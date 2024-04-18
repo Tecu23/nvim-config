@@ -1,4 +1,3 @@
-TODO: Add Harpoon
 TODO: Either Add terminal somwhow or use Tmux
 TODO: Make formatting + linting for js, ts, tailwind, css, html, go, python, sql, md
 TODO: Test formatting + linting for all

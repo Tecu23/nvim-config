@@ -1,6 +1,13 @@
 local M = {
     "lewis6991/gitsigns.nvim",
     opts = {
+        signs = {
+            add = { text = "+" },
+            change = { text = "~" },
+            delete = { text = "_" },
+            topdelete = { text = "‾" },
+            changedelete = { text = "~" },
+        },
         on_attach = function(bufnr)
             local gitsigns = require 'gitsigns'
 
@@ -60,17 +67,7 @@ local M = {
 function M.config()
 	-- See `:help gitsigns` to understand what the configuration keys do
     -- Adds git related signs to the gutter, as well as utilities for managing changes
-	require("gitsigns").setup {
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-		},
-	}
+	require("gitsigns").setup ()
 end
 
 return M

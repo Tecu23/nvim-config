@@ -15,6 +15,7 @@ spec("tecu.plugins.core.which-key")
 spec("tecu.plugins.core.treesitter")
 spec("tecu.plugins.core.telescope")
 spec("tecu.plugins.core.indent_line")
+spec("tecu.plugins.core.harpoon")
 
 -- Custom Plugins
 spec("tecu.plugins.custom.todo-comments")

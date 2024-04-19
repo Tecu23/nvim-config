@@ -27,6 +27,7 @@ spec("tecu.plugins.custom.mini")
 spec("tecu.plugins.custom.debug")
 spec("tecu.plugins.custom.autopairs")
 spec("tecu.plugins.custom.autotag")
+spec("tecu.plugins.custom.terminal")
 
 -- LSP
 spec("tecu.lsp.lspconfig")

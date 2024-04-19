@@ -60,7 +60,7 @@ local M = {
 function M.config(_, opts)
     local function on_move(data)
         vim.lsp.on_rename(data.source, data.destination)
-    -- end
+    end
 
     local events = require("neo-tree.events")
     opts.event_handlers = opts.event_handlers or {}

@@ -6,7 +6,7 @@ local M = {
 function M.config()
     local lint = require("lint")
     lint.linters_by_ft = {
-        go = { "gofumpt", "goimport-reviser", "golines" },
+        go = { "revive" },
         html = {},
         css = {},
         markdown = { "markdownlint" },

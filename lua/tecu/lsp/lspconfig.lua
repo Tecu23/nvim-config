@@ -71,9 +71,6 @@ function M.config()
     vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
         callback = function(event)
-            -- NOTE: Remember that Lua is a real programming language, and as such it is possible
-            -- to define small helper and utility functions so you don't have to repeat yourself.
-
             -- Setting the keymaps for the LSP
             keymaps(event.buf)
 
@@ -107,6 +104,25 @@ function M.config()
         end,
     })
 
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = { "*.go" },
+        callback = function()
+            local params = vim.lsp.util.make_range_params(nil, "utf-16")
+            params.context = { only = { "source.organizeImports" } }
+            local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
+            for _, res in pairs(result or {}) do
+                for _, r in pairs(res.result or {}) do
+                    if r.edit then
+                        vim.lsp.util.apply_workspace_edit(r.edit, "utf-16")
+                    else
+                        vim.lsp.buf.execute_command(r.command)
+                    end
+                end
+            end
+        end,
+    })
+
+    local util = require("lspconfig.util")
     -- LSP servers and clients are able to communicate to each other what features they support.
     --  By default, Neovim doesn't support everything that is in the LSP specification.
     --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -127,7 +143,63 @@ function M.config()
         cssls = {},
         dockerls = {},
         eslint = {},
-        gopls = {},
+        gopls = {
+            cmd = { "gopls" },
+            filetypes = { "go", "gomod", "gowork", "gotmpl" },
+            root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+            settings = {
+                -- https://go.googlesource.com/vscode-go/+/HEAD/docs/settings.md#settings-for
+                -- https://www.lazyvim.org/extras/lang/go (borrowed some ideas from here)
+                gopls = {
+                    analyses = {
+                        fieldalignment = false, -- find structs that would use less memory if their fields were sorted
+                        nilness = true,
+                        unusedparams = true,
+                        unusedwrite = true,
+                        useany = true,
+                    },
+                    codelenses = {
+                        gc_details = false,
+                        generate = true,
+                        regenerate_cgo = true,
+                        run_govulncheck = true,
+                        test = true,
+                        tidy = true,
+                        upgrade_dependency = true,
+                        vendor = true,
+                    },
+                    experimentalPostfixCompletions = true,
+                    hints = {
+                        assignVariableTypes = true,
+                        compositeLiteralFields = true,
+                        compositeLiteralTypes = true,
+                        constantValues = true,
+                        functionTypeParameters = true,
+                        parameterNames = true,
+                        rangeVariableTypes = true,
+                    },
+                    gofumpt = true,
+                    semanticTokens = true,
+                    -- DISABLED: staticcheck
+                    --
+                    -- gopls doesn't invoke the staticcheck binary.
+                    -- Instead it imports the analyzers directly.
+                    -- This means it can report on issues the binary can't.
+                    -- But it's not a good thing (like it initially sounds).
+                    -- You can't then use line directives to ignore issues.
+                    --
+                    -- Instead of using staticcheck via gopls.
+                    -- We have golangci-lint execute it instead.
+                    --
+                    -- For more details:
+                    -- https://github.com/golang/go/issues/36373#issuecomment-570643870
+                    -- https://github.com/golangci/golangci-lint/issues/741#issuecomment-1488116634
+                    --
+                    -- staticcheck = true,
+                    usePlaceholders = true,
+                },
+            },
+        },
         html = {},
         jsonls = {},
         lua_ls = {

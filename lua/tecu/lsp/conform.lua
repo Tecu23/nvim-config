@@ -35,7 +35,7 @@ function M.config()
         formatters_by_ft = {
             lua = { "stylua" },
             python = { "isort", "black" },
-            go = { "gofumpt", "goimports-reviser", "golines" },
+            go = { "goimports-reviser", "golines" },
             markdown = { "markdownlint" },
             sql = { "sqlfluff" },
             typescript = { { "prettierd", "prettier" } },

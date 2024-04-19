@@ -43,10 +43,16 @@ function M.config()
     vim.keymap.set("n", "<F1>", dap.step_into, { desc = "Debug: Step Into" })
     vim.keymap.set("n", "<F2>", dap.step_over, { desc = "Debug: Step Over" })
     vim.keymap.set("n", "<F3>", dap.step_out, { desc = "Debug: Step Out" })
-    vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
-    vim.keymap.set("n", "<leader>B", function()
+    vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
+    vim.keymap.set("n", "<leader>dB", function()
         dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
     end, { desc = "Debug: Set Breakpoint" })
+
+    vim.keymap.set("n", "<leader>dus", function()
+        local widgets = require("dap.ui.widgets")
+        local sidebar = widgets.sidebar(widgets.scopes)
+        sidebar.open()
+    end, { desc = "Open Debugging sidebar" })
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
@@ -78,7 +84,16 @@ function M.config()
     dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
     -- Install golang specific config
-    require("dap-go").setup()
+    require("dap-go").setup({
+        ft = "go",
+    })
+
+    vim.keymap.set("n", "<leader>dgt", function()
+        require("dap-go").debug_test()
+    end, { desc = "Debug go test" })
+    vim.keymap.set("n", "<leader>dgl", function()
+        require("dap-go").debug_last_test()
+    end, { desc = "Debug last go test" })
 end
 
 return M

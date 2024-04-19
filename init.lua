@@ -24,6 +24,7 @@ spec("tecu.plugins.custom.gitsigns")
 spec("tecu.plugins.custom.mini")
 spec("tecu.plugins.custom.debug")
 spec("tecu.plugins.custom.autopairs")
+spec("tecu.plugins.custom.autotag")
 
 -- LSP
 spec("tecu.lsp.lspconfig")
@@ -32,4 +33,3 @@ spec("tecu.lsp.lint")
 
 -- Lazy Nvim
 require("tecu.lazy")
-

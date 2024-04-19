@@ -1,12 +1,23 @@
 local M = {
-    'mfussenegger/nvim-lint',
-    event = { 'BufReadPre', 'BufNewFile' },
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPre", "BufNewFile" },
 }
 
 function M.config()
-    local lint = require 'lint'
+    local lint = require("lint")
     lint.linters_by_ft = {
-        markdown = { 'markdownlint' },
+        go = { "gofumpt", "goimport-reviser", "golines" },
+        html = {},
+        css = {},
+        markdown = { "markdownlint" },
+        lua = {},
+        json = { "fixjson" },
+        javascript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescript = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+        sh = { "shellcheck" },
+        sql = { "sqlfluff" },
     }
 
     -- To allow other plugins to add linters to require('lint').linters_by_ft,
@@ -43,11 +54,11 @@ function M.config()
 
     -- Create autocommand which carries out the actual linting
     -- on the specified events.
-    local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
-    vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+    local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         group = lint_augroup,
         callback = function()
-            require('lint').try_lint()
+            require("lint").try_lint()
         end,
     })
 end

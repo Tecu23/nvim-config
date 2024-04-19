@@ -7,7 +7,7 @@ vim.g.have_nerd_font = false
 --  For more option
 
 -- convert tabs to spaces
-vim.opt.expandtab = true 
+vim.opt.expandtab = true
 -- the number of spaces inserted for each indentation
 vim.opt.shiftwidth = 4
 -- insert 2 spaces for a tab
@@ -70,9 +70,6 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
-
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true

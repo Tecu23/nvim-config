@@ -1,6 +1,6 @@
 local M = {
     "windwp/nvim-ts-autotag",
-    ft = {
+    filetypes = {
         "javascript",
         "javascriptreact",
         "typescript",

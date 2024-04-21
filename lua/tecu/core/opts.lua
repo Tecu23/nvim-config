@@ -5,6 +5,8 @@ vim.g.have_nerd_font = false
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
 --  For more option
+vim.g.have_nerd_font = true
+vim.opt.guifont = "CodeNewRoman"
 
 -- convert tabs to spaces
 vim.opt.expandtab = true

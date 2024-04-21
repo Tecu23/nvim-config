@@ -11,13 +11,24 @@ function M.config()
         css = {},
         markdown = { "markdownlint" },
         lua = {},
-        json = { "fixjson" },
+        json = { "jq" },
         javascript = { "eslint_d" },
         javascriptreact = { "eslint_d" },
         typescript = { "eslint_d" },
         typescriptreact = { "eslint_d" },
         sh = { "shellcheck" },
         sql = { "sqlfluff" },
+    }
+
+    lint.linters.eslint_d.args = {
+        "--no-warn-ignored",
+        "--format",
+        "json",
+        "--stdin",
+        "--stdin-filename",
+        function()
+            return vim.api.nvim_buf_get_name(0)
+        end,
     }
 
     -- To allow other plugins to add linters to require('lint').linters_by_ft,

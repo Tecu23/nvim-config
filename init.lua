@@ -9,6 +9,7 @@ require("tecu.core.kmaps")
 require("tecu.core.autocmds")
 
 -- Core Plugins
+spec("tecu.plugins.custom.lazygit")
 spec("tecu.plugins.core.colorscheme")
 spec("tecu.plugins.core.cmp")
 spec("tecu.plugins.core.which-key")

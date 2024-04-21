@@ -221,6 +221,18 @@ function M.config()
         tailwindcss = {},
         tsserver = {},
         yamlls = {},
+
+        -- Ruby LSPs
+        solargraph = {
+            diagnostics = true,
+            completion = true,
+            flags = {
+                debounce_text_changes = 150,
+            },
+            initializationOptions = {
+                formatting = true,
+            },
+        },
     }
 
     -- Ensure the servers and tools above are installed

@@ -18,6 +18,7 @@ function M.config()
         typescriptreact = { "eslint_d" },
         sh = { "shellcheck" },
         sql = { "sqlfluff" },
+        lint = { "rubocop" },
     }
 
     lint.linters.eslint_d.args = {

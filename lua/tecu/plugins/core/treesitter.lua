@@ -6,6 +6,7 @@ local M = {
         ensure_installed = {
             "bash",
             "c",
+            "dockerfile",
             "html",
             "lua",
             "luadoc",

@@ -9,6 +9,7 @@ local M = {
             "html",
             "lua",
             "luadoc",
+            "dockerfile",
             "markdown",
             "vim",
             "vimdoc",
@@ -20,6 +21,7 @@ local M = {
             "tsx",
             "sql",
             "markdown",
+            "regex",
         },
         -- Autoinstall languages that are not installed
         auto_install = true,

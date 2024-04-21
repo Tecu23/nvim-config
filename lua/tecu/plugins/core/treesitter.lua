@@ -6,6 +6,7 @@ local M = {
         ensure_installed = {
             "bash",
             "c",
+            "dockerfile",
             "html",
             "lua",
             "luadoc",
@@ -20,6 +21,7 @@ local M = {
             "tsx",
             "sql",
             "markdown",
+            "regex",
         },
         -- Autoinstall languages that are not installed
         auto_install = true,

@@ -9,7 +9,6 @@ require("tecu.core.kmaps")
 require("tecu.core.autocmds")
 
 -- Core Plugins
-spec("tecu.plugins.custom.lazygit")
 spec("tecu.plugins.core.colorscheme")
 spec("tecu.plugins.core.cmp")
 spec("tecu.plugins.core.which-key")
@@ -30,6 +29,8 @@ spec("tecu.plugins.custom.autopairs")
 spec("tecu.plugins.custom.autotag")
 spec("tecu.plugins.custom.terminal")
 spec("tecu.plugins.custom.gopher")
+spec("tecu.plugins.custom.lazygit")
+spec("tecu.plugins.custom.neotest")
 
 -- LSP
 spec("tecu.lsp.lspconfig")

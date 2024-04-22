@@ -1,3 +1,3 @@
-# Neovim Configuration
+# Current Neovim Config
 
-Testing different plugins and settings to add to main config
+Testing ground for neovim config.

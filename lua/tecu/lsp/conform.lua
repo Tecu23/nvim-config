@@ -30,9 +30,8 @@ function M.config()
             stylua = {
                 prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" },
             },
-            prettierd = {},
             biome = {
-                prepend_args = { "format", "--indent-type", "Spaces", "--indent-width", "4", "line-width", "120" },
+                prepend_args = { "format", "--indent-type", "Spaces", "--indent-width", "4", "line-width", "180" },
             },
         },
         formatters_by_ft = {

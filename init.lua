@@ -17,6 +17,7 @@ spec("tecu.plugins.core.treesitter")
 spec("tecu.plugins.core.telescope")
 spec("tecu.plugins.core.indent_line")
 spec("tecu.plugins.core.harpoon")
+spec("tecu.plugins.core.transparent")
 
 -- Custom Plugins
 spec("tecu.plugins.custom.noice")

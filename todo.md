@@ -1,6 +1,27 @@
-
-## TODOs
+ TODOs
 
 - TODO: Test debugging for js and go
 - TODO: Test neotest
-- TODO: Change theme from tokyonight
+
+## Plugins to maybe try
+
+<https://github.com/Alexis12119/nvim-config>
+
+- cinnamon
+- colorizer => add color to hex strings
+- diffview => single tabpage interface for easily cycling through diffs
+- dressing
+- flash
+- markdown preview
+- marks
+- neorg
+- numb
+- nvim-spectre
+- oil
+- persisted
+- project
+- sidebar
+- sonarlint?
+- tmux-navigator
+- toggleterm
+- ufo

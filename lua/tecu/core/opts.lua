@@ -63,6 +63,8 @@ vim.opt.splitbelow = true
 --  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- make EndOfBuffer invisible
+vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "", lastline = " " }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"

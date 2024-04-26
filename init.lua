@@ -31,6 +31,7 @@ spec("tecu.plugins.custom.terminal")
 spec("tecu.plugins.custom.gopher")
 spec("tecu.plugins.custom.lazygit")
 spec("tecu.plugins.custom.neotest")
+spec("tecu.plugins.custom.ufo")
 
 -- LSP
 spec("tecu.lsp.lspconfig")

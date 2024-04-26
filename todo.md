@@ -23,5 +23,11 @@
 - sidebar
 - sonarlint?
 - tmux-navigator
-- toggleterm
-- ufo
+
+## Update Plugins and maybe add something new
+
+- indent-line
+- noice
+- mini
+- which-key
+- autotag

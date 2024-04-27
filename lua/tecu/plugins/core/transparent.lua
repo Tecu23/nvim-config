@@ -42,6 +42,7 @@ function M.config()
 
     vim.keymap.set("n", "<leader>td", ":TransparentDisable<cr>")
     vim.keymap.set("n", "<leader>te", ":TransparentEnable<cr>")
+    vim.keymap.set("n", "<leader>tt", ":TransparentToggle<cr>")
 end
 
 return M

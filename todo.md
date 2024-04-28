@@ -5,7 +5,6 @@
 <https://github.com/Alexis12119/nvim-config>
 
 - colorizer => add color to hex strings
-- dressing
 - flash
 - markdown preview
 - neorg

@@ -7,6 +7,7 @@ vim.g.have_nerd_font = false
 --  For more option
 vim.g.have_nerd_font = true
 vim.opt.guifont = "CodeNewRoman"
+vim.opt.termguicolors = true
 
 -- convert tabs to spaces
 vim.opt.expandtab = true

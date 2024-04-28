@@ -8,7 +8,6 @@
 - dressing
 - flash
 - markdown preview
-- marks
 - neorg
 - numb
 - nvim-spectre
@@ -22,4 +21,3 @@
 - noice
 - mini
 - which-key
-- autotag

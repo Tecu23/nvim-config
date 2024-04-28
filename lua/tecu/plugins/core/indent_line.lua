@@ -1,7 +1,6 @@
 local M = {
     -- Add indentation guides even on blank lines
     "lukas-reineke/indent-blankline.nvim",
-    enabled = false,
     event = "User FilePost",
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`

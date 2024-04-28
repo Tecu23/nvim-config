@@ -33,6 +33,7 @@ spec("tecu.plugins.custom.gopher")
 spec("tecu.plugins.custom.lazygit")
 spec("tecu.plugins.custom.neotest")
 spec("tecu.plugins.custom.ufo")
+spec("tecu.plugins.custom.dressing")
 
 -- LSP
 spec("tecu.lsp.lspconfig")

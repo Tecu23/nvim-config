@@ -235,7 +235,24 @@ function M.config()
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
+
+        -- Linters
+        "biome",
+        "revive",
+        "gofumpt",
+        "gomodifytags",
+        "markdownlint",
+        "sqlfluff",
+        "codespell",
+
+        -- Formatters
         "stylua", -- Used to format Lua code
+        "isort",
+        "black",
+        "goimports-reviser",
+        "golines",
+        "prettierd",
+        "prettier",
     })
 
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

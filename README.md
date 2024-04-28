@@ -47,3 +47,12 @@ vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
+
+|Mode|Shortcut|Action|Description|
+|----|--------|------|-----------|
+|n| `<TAB>` |Harpoon.ui:toggle_quick_menu| Open Harpooon Menu|
+|n| `<Meta-m>`|harpoon:list().add()| Add the current pageto harpoon list|
+|n| `<Meta-n>`|harpoon:list().remove() | Remove the current page from harppon|
+|n| `<Ctrl-q>`|harpoon:list():prev() | Move to the previous element|
+|n| `<Ctrl-w>`|harpoon:list():next() | Move to the next element|
+

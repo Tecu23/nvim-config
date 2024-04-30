@@ -133,6 +133,8 @@ function M.config()
             "NoiceSplit",
             "NoiceSplitBorder",
             "NoiceVirtualText",
+
+            "NotifyBackground",
         },
     })
     transparent.clear_prefix("BufferLine")
@@ -141,7 +143,7 @@ function M.config()
 
     vim.keymap.set("n", "<leader>td", ":TransparentDisable<cr>")
     vim.keymap.set("n", "<leader>te", ":TransparentEnable<cr>")
-    vim.keymap.set("n", "<leader>tt", ":TransparentToggle<cr>")
+    vim.keymap.set("n", "<leader>tb", ":TransparentToggle<cr>")
 end
 
 return M

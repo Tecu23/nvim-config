@@ -27,7 +27,7 @@ local M = {
 
                         -- Folds
                         {
-                            text = { builtin.foldfunc, " " },
+                            text = { builtin.foldfunc },
                         },
                         -- Relative Line Numbers
                         {

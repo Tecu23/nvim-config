@@ -1,11 +1,5 @@
 local M = {
     "akinsho/toggleterm.nvim",
-    cmd = {
-        "ToggleTerm",
-        "ToggleTermSendCurrentLine",
-        "ToggleTermSendVisualLines",
-        "ToggleTermSendVisualSelection",
-    },
 }
 
 function M.config()

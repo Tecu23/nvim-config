@@ -6,7 +6,26 @@ local M = {
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         -- Useful status updates for LSP.
-        { "j-hui/fidget.nvim", opts = {} },
+        {
+            "j-hui/fidget.nvim",
+            tag = "v1.4.1",
+            opts = {
+                notification = {
+                    window = {
+                        normal_hl = "Comment", -- Base highlight group in the notification window
+                        winblend = 0, -- Background color opacity in the notification window
+                        border = "none", -- Border around the notification window
+                        zindex = 45, -- Stacking priority of the notification window
+                        max_width = 0, -- Maximum width of the notification window
+                        max_height = 0, -- Maximum height of the notification window
+                        x_padding = 1, -- Padding from right edge of window boundary
+                        y_padding = 0, -- Padding from bottom edge of window boundary
+                        align = "bottom", -- How to align the notification window
+                        relative = "editor", -- What the notification window position is relative to
+                    },
+                },
+            },
+        },
 
         -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
         -- used for completion, annotations and signatures of Neovim apis
@@ -97,9 +116,9 @@ function M.config()
             --
             -- This may be unwanted, since they displace some of your code
             if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-                map("<leader>th", function()
+                vim.keymap.set("n", "<leader>th", function()
                     vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
-                end, "[T]oggle Inlay [H]ints")
+                end, { desc = "[T]oggle Inlay [H]ints" })
             end
         end,
     })
@@ -247,7 +266,24 @@ function M.config()
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
+
+        -- Linters
+        "biome",
+        "revive",
+        "gofumpt",
+        "gomodifytags",
+        "markdownlint",
+        "sqlfluff",
+        "codespell",
+
+        -- Formatters
         "stylua", -- Used to format Lua code
+        "isort",
+        "black",
+        "goimports-reviser",
+        "golines",
+        "prettierd",
+        "prettier",
     })
 
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

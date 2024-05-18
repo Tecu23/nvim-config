@@ -26,6 +26,9 @@ vim.keymap.set({ "n", "x" }, "j", "gj", {})
 vim.keymap.set({ "n", "x" }, "k", "gk", {})
 vim.keymap.set("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", {})
 
+-- keep yanked text when pasting in visual mode
+vim.keymap.set("v", "p", [["_dP]], { desc = "Keep the yanked text when pasting in visual  mode" })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
@@ -34,12 +37,6 @@ vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
-
--- Better window navigation
-vim.keymap.set("n", "<m-h>", "<C-w>h", { desc = "Move to the left split" })
-vim.keymap.set("n", "<m-j>", "<C-w>j", { desc = "Move to the down split" })
-vim.keymap.set("n", "<m-k>", "<C-w>k", { desc = "Move to the top split" })
-vim.keymap.set("n", "<m-l>", "<C-w>l", { desc = "Move to the right split" })
 
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })

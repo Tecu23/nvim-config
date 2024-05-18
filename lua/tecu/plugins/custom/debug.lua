@@ -38,21 +38,26 @@ function M.config()
         },
     })
 
-    -- Basic debugging keymaps, feel free to change to your liking!
-    vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: Start/Continue" })
-    vim.keymap.set("n", "<F1>", dap.step_into, { desc = "Debug: Step Into" })
-    vim.keymap.set("n", "<F2>", dap.step_over, { desc = "Debug: Step Over" })
-    vim.keymap.set("n", "<F3>", dap.step_out, { desc = "Debug: Step Out" })
-    vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
-    vim.keymap.set("n", "<leader>dB", function()
-        dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-    end, { desc = "Debug: Set Breakpoint" })
+    dap.listeners.before.attach.dapui_config = function()
+        dapui.open()
+    end
+    dap.listeners.before.launch.dapui_config = function()
+        dapui.open()
+    end
+    dap.listeners.before.event_terminated.dapui_config = function()
+        dapui.close()
+    end
+    dap.listeners.before.event_exited.dapui_config = function()
+        dapui.close()
+    end
+    dap.listeners.after.event_initialized["dapui_config"] = dapui.open
+    dap.listeners.before.event_terminated["dapui_config"] = dapui.close
+    dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
-    vim.keymap.set("n", "<leader>dus", function()
-        local widgets = require("dap.ui.widgets")
-        local sidebar = widgets.sidebar(widgets.scopes)
-        sidebar.open()
-    end, { desc = "Open Debugging sidebar" })
+    -- Install golang specific config
+    require("dap-go").setup({
+        ft = "go",
+    })
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
@@ -76,18 +81,26 @@ function M.config()
         },
     })
 
+    -- Basic debugging keymaps, feel free to change to your liking!
+    vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Debug: Start/Continue" })
+    vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Debug: Step Into" })
+    vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "Debug: Step Over" })
+    vim.keymap.set("n", "<leader>dot", dap.step_out, { desc = "Debug: Step Out" })
+    vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
+    vim.keymap.set("n", "<leader>dB", function()
+        dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+    end, { desc = "Debug: Set Breakpoint" })
+
+    vim.keymap.set("n", "<leader>dus", function()
+        local widgets = require("dap.ui.widgets")
+        local sidebar = widgets.sidebar(widgets.scopes)
+        sidebar.open()
+    end, { desc = "Open Debugging sidebar" })
+
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    vim.keymap.set("n", "<F7>", dapui.toggle, { desc = "Debug: See last session result." })
+    vim.keymap.set("n", "<leader>ls", dapui.toggle, { desc = "Debug: See last session result." })
 
-    dap.listeners.after.event_initialized["dapui_config"] = dapui.open
-    dap.listeners.before.event_terminated["dapui_config"] = dapui.close
-    dap.listeners.before.event_exited["dapui_config"] = dapui.close
-
-    -- Install golang specific config
-    require("dap-go").setup({
-        ft = "go",
-    })
-
+    -- Testing Keymaps
     vim.keymap.set("n", "<leader>dgt", function()
         require("dap-go").debug_test()
     end, { desc = "Debug go test" })

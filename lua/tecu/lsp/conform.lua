@@ -5,16 +5,6 @@ local M = {
 function M.config()
     require("conform").setup({
         lazy = false,
-        keys = {
-            {
-                "<leader>fu",
-                function()
-                    require("conform").format({ async = true, lsp_fallback = true })
-                end,
-                mode = "",
-                desc = "[F]ormat buffer",
-            },
-        },
         notify_on_error = false,
         format_on_save = function(bufnr)
             -- Disable "format_on_save lsp_fallback" for languages that don't
@@ -30,7 +20,9 @@ function M.config()
             stylua = {
                 prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" },
             },
-            prettierd = {},
+            biome = {
+                prepend_args = { "format", "--indent-style", "space", "--indent-width", "4", "--line-width", "180" },
+            },
         },
         formatters_by_ft = {
             lua = { "stylua" },

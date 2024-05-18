@@ -7,6 +7,7 @@ vim.g.have_nerd_font = false
 --  For more option
 vim.g.have_nerd_font = true
 vim.opt.guifont = "CodeNewRoman"
+vim.opt.termguicolors = true
 
 -- convert tabs to spaces
 vim.opt.expandtab = true
@@ -63,6 +64,8 @@ vim.opt.splitbelow = true
 --  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- make EndOfBuffer invisible
+vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "", lastline = " " }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
@@ -71,7 +74,8 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 20
+vim.opt.sidescrolloff = 20
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true

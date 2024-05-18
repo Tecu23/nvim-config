@@ -9,6 +9,7 @@ function M.config()
         go = { "revive" },
         html = {},
         css = {},
+        scss = { "stylelint" },
         markdown = { "markdownlint" },
         lua = {},
         json = { "jq" },
@@ -18,7 +19,8 @@ function M.config()
         typescriptreact = { "eslint_d" },
         sh = { "shellcheck" },
         sql = { "sqlfluff" },
-        lint = { "rubocop" },
+        ruby = { "rubocop" },
+        eruby = { "erb_lint" },
     }
 
     lint.linters.eslint_d.args = {

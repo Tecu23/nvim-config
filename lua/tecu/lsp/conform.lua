@@ -25,6 +25,8 @@ function M.config()
             },
         },
         formatters_by_ft = {
+            ruby = { "rufo" },
+            eruby = { "erb_formatter" },
             lua = { "stylua" },
             python = { "isort", "black" },
             go = { "goimports-reviser", "golines" },

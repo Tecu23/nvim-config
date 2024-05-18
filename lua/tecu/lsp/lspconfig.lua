@@ -275,9 +275,14 @@ function M.config()
         "markdownlint",
         "sqlfluff",
         "codespell",
+        "stylelint",
+        "erb-lint",
+        "rubocop",
 
         -- Formatters
         "stylua", -- Used to format Lua code
+        "rufo",
+        "erb-formatter",
         "isort",
         "black",
         "goimports-reviser",

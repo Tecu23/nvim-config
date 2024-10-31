@@ -32,6 +32,12 @@ function M.config()
 
     require("telescope").setup({
         defaults = {
+            sorting_strategy = "ascending",
+            layout_config = {
+                horizontal = {
+                    prompt_position = "top",
+                },
+            },
             entry_prefix = "   ",
             initial_mode = "insert",
             selection_strategy = "reset",
@@ -70,6 +76,7 @@ function M.config()
             grep_string = {},
 
             find_files = {
+                hidden = false,
                 find_command = {
                     "rg",
                     "--files",

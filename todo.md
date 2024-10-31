@@ -4,3 +4,4 @@
 
 - which-key
 - add keymaps cheatsheet
+- tree sj

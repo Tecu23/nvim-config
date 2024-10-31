@@ -219,7 +219,20 @@ function M.config()
                 },
             },
         },
-        html = {},
+        html = {
+            filetypes = {
+                "templ",
+                "html",
+                "css",
+                "javascriptreact",
+                "typescriptreact",
+                "javascript",
+                "typescript",
+                "jsx",
+                "tsx",
+                "markdown",
+            },
+        },
         jsonls = {},
         lua_ls = {
             -- cmd = {...},
@@ -237,7 +250,33 @@ function M.config()
         },
         pyright = {},
         sqls = {},
-        tailwindcss = {},
+        sqlls = {},
+        tailwindcss = {
+            filetypes = {
+                "templ",
+                "html",
+                "css",
+                "javascriptreact",
+                "typescriptreact",
+                "javascript",
+                "typescript",
+                "jsx",
+                "tsx",
+            },
+            root_dir = require("lspconfig").util.root_pattern(
+                "tailwind.config.js",
+                "tailwind.config.cjs",
+                "tailwind.config.mjs",
+                "tailwind.config.ts",
+                "postcss.config.js",
+                "postcss.config.cjs",
+                "postcss.config.mjs",
+                "postcss.config.ts",
+                "package.json",
+                "node_modules",
+                ".git"
+            ),
+        },
         tsserver = {},
         yamlls = {},
     }
@@ -258,7 +297,6 @@ function M.config()
         -- Linters
         "biome",
         "revive",
-        "gofumpt",
         "gomodifytags",
         "markdownlint",
         "sqlfluff",
@@ -268,10 +306,17 @@ function M.config()
         "stylua", -- Used to format Lua code
         "isort",
         "black",
+        "gofumpt",
         "goimports-reviser",
         "golines",
         "prettierd",
         "prettier",
+        "sqlfmt",
+        "yamlfmt",
+
+        -- "Snippets"
+        "impl",
+        "iferr",
     })
 
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

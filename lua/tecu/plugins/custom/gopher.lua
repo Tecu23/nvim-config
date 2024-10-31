@@ -8,11 +8,24 @@ local M = {
 
 M.config = function()
     require("gopher").setup({
-        go = "go",
-        gomodifytags = "gomodifytags",
-        gotests = "~/go/bin/gotests", -- also you can set custom command path
-        impl = "impl",
-        iferr = "iferr",
+        commands = {
+            go = "go",
+            gomodifytags = "gomodifytags",
+            impl = "impl",
+            iferr = "iferr",
+        },
+        gotests = {
+            -- gotests doesn't have template named "default" so this plugin uses "default" to set the default template
+            template = "default",
+            -- path to a directory containing custom test code templates
+            template_dir = nil,
+            -- switch table tests from using slice to map (with test name for the key)
+            -- works only with gotests installed from develop branch
+            named = false,
+        },
+        gotag = {
+            transform = "snakecase",
+        },
     })
 
     vim.keymap.set("n", "<leader>gsj", "<cmd>GoTagAdd json<CR>", { desc = "Add json struct tags" })

@@ -20,22 +20,20 @@ spec("tecu.plugins.core.indent_line")
 spec("tecu.plugins.core.harpoon")
 spec("tecu.plugins.core.transparent")
 spec("tecu.plugins.core.colorizer")
-spec("tecu.plugins.core.terminal")
 
 -- Custom Plugins
-spec("tecu.plugins.custom.noice")
 spec("tecu.plugins.custom.todo-comments")
 spec("tecu.plugins.custom.comment")
 spec("tecu.plugins.custom.mini")
-spec("tecu.plugins.custom.debug")
 spec("tecu.plugins.custom.autopairs")
 spec("tecu.plugins.custom.autotag")
 spec("tecu.plugins.custom.gopher")
 spec("tecu.plugins.custom.lazygit")
-spec("tecu.plugins.custom.neotest")
 spec("tecu.plugins.custom.ufo")
 spec("tecu.plugins.custom.dressing")
 spec("tecu.plugins.custom.markdown-preview")
+spec("tecu.plugins.custom.flash")
+spec("tecu.plugins.custom.oil")
 
 -- LSP
 spec("tecu.lsp.lspconfig")
@@ -44,3 +42,5 @@ spec("tecu.lsp.lint")
 
 -- Lazy Nvim
 require("tecu.lazy")
+
+vim.api.nvim_command(":TransparentEnable")

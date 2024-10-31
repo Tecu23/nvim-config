@@ -65,13 +65,9 @@ function M.config()
             },
         },
         pickers = {
-            live_grep = {
-                theme = "dropdown",
-            },
+            live_grep = {},
 
-            grep_string = {
-                theme = "dropdown",
-            },
+            grep_string = {},
 
             find_files = {
                 find_command = {
@@ -81,13 +77,10 @@ function M.config()
                     "-g",
                     "!.git",
                 },
-                theme = "dropdown",
-                previewer = false,
             },
 
             buffers = {
-                theme = "dropdown",
-                previewer = false,
+                previewer = true,
                 initial_mode = "normal",
                 mappings = {
                     i = {
@@ -109,22 +102,18 @@ function M.config()
             },
 
             lsp_references = {
-                theme = "dropdown",
                 initial_mode = "normal",
             },
 
             lsp_definitions = {
-                theme = "dropdown",
                 initial_mode = "normal",
             },
 
             lsp_declarations = {
-                theme = "dropdown",
                 initial_mode = "normal",
             },
 
             lsp_implementations = {
-                theme = "dropdown",
                 initial_mode = "normal",
             },
         },

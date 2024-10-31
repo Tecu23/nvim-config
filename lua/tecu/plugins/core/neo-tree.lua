@@ -48,7 +48,6 @@ local M = {
         close_if_last_window = false, -- Close Neo-tree if it is the last windows
         enable_git_status = true,
         enable_diagnostics = true,
-        enable_normal_mode_for_inputs = false, -- Enable normal mode for input dialogs.
         open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
         sort_case_insensitive = false, -- used when sorting files and directories in the tree
         sort_function = nil, -- use a custom function for sorting files and directories in the tree
@@ -327,6 +326,14 @@ function M.config(_, opts)
     vim.list_extend(opts.event_handlers, {
         { event = events.FILE_MOVED, handler = on_move },
         { event = events.FILE_RENAMED, handler = on_move },
+        {
+            event = "neo_tree_popup_input_ready",
+            ---@param args { bufnr: integer, winid: integer }
+            handler = function(args)
+                vim.cmd("stopinsert")
+                vim.keymap.set("i", "<esc>", vim.cmd.stopinsert, { noremap = true, buffer = args.bufnr })
+            end,
+        },
     })
     require("neo-tree").setup(opts)
     vim.api.nvim_create_autocmd("TermClose", {

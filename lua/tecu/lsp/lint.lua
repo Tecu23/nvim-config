@@ -11,7 +11,7 @@ function M.config()
         css = {},
         markdown = { "markdownlint" },
         lua = {},
-        json = { "jq" },
+        json = {},
         javascript = { "eslint" },
         javascriptreact = { "eslint" },
         typescript = { "eslint" },

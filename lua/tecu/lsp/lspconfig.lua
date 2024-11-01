@@ -277,7 +277,7 @@ function M.config()
                 ".git"
             ),
         },
-        tsserver = {},
+        ts_ls = {},
         yamlls = {},
     }
 

@@ -318,7 +318,11 @@ local M = {
 
 function M.config(_, opts)
     local function on_move(data)
-        vim.lsp.on_rename(data.source, data.destination)
+        if vim.lsp.buf.rename then
+            vim.lsp.buf.rename(data.destination)
+        else
+            vim.notify("Rename functionality not supported by LSP", vim.log.levels.ERROR)
+        end
     end
 
     local events = require("neo-tree.events")

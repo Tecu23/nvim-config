@@ -11,9 +11,7 @@ vim.opt.termguicolors = true
 
 -- convert tabs to spaces
 vim.opt.expandtab = true
--- the number of spaces inserted for each indentation
 vim.opt.shiftwidth = 4
--- insert 2 spaces for a tab
 vim.opt.tabstop = 4
 
 -- Make line numbers default

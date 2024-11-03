@@ -20,6 +20,7 @@ spec("tecu.plugins.core.indent_line")
 spec("tecu.plugins.core.harpoon")
 spec("tecu.plugins.core.transparent")
 spec("tecu.plugins.core.colorizer")
+spec("tecu.plugins.core.typescript_tools")
 
 -- Custom Plugins
 spec("tecu.plugins.custom.todo-comments")

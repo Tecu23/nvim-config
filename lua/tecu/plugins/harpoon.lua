@@ -1,5 +1,4 @@
 ---@type NvPluginSpec
--- NOTE: Marks
 return {
 	"ThePrimeagen/harpoon",
 	init = function()
@@ -7,6 +6,11 @@ return {
 			require("harpoon"):list():add()
 			vim.notify("   Marked file", vim.log.levels.INFO, { title = "Harpoon" })
 		end, { desc = "Harpoon | Add Mark" })
+
+		vim.keymap.set("n", "<leader>hr", function()
+			require("harpoon"):list():remove()
+			vim.notify("   Unmarked file", vim.log.levels.INFO, { title = "Harpoon" })
+		end, { desc = "Harpoon | Remove Mark" })
 
 		vim.keymap.set("n", "<leader>hh", function()
 			require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())

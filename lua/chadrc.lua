@@ -1,17 +1,18 @@
 local M = {}
 
 M.base46 = {
-	theme = "rosepine",
+	theme = "everblush",
 	-- transparency = true,
 }
 
 M.ui = {
-	telescope = { style = "borderless" }, -- borderless / bordered
+	telescope = { style = "bordered" }, -- borderless / bordered
 	cmp = {
 		lspkind_text = true,
 		style = "default", -- default/flat_light/flat_dark/atom/atom_colored
 		format_colors = {
 			tailwind = true,
+			icon = "󱓻",
 		},
 	},
 	statusline = {

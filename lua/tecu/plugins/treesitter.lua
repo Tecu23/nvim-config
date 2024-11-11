@@ -73,10 +73,12 @@ return {
 			"markdown_inline",
 			"python",
 			"regex",
+			"ruby",
 			"tsx",
 			"typescript",
 			"vim",
 			"vimdoc",
+			"yaml",
 		},
 		indent = {
 			enable = false,

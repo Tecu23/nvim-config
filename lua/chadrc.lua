@@ -1,7 +1,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "everblush",
+	theme = "ayu_dark",
 	-- transparency = true,
 }
 
@@ -37,5 +37,7 @@ M.ui = {
 	},
 	tabufline = { enabled = false },
 }
+
+M.plugins = "tecu.plugins"
 
 return M

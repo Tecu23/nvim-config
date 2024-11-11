@@ -46,6 +46,7 @@ function M.setup_servers()
 		"stylua", -- Used to format Lua code
 		"prettierd",
 		"rustywind", -- Tailwind css formatter
+		-- "rubocop",
 	})
 	require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

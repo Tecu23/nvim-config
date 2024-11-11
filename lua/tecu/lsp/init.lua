@@ -22,7 +22,6 @@ function M.setup_servers()
 	for _, file in ipairs(server_files) do
 		if file:sub(-4) == ".lua" then
 			local server_name = vim.fn.fnamemodify(file, ":r")
-			print(server_name)
 			servers[server_name] = require("tecu.lsp.servers." .. server_name)
 		end
 	end

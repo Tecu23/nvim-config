@@ -2,8 +2,12 @@ local M = {}
 
 local highlights = require("tecu.config.highlights")
 
+for group, settings in pairs(highlights.override) do
+	vim.api.nvim_set_hl(0, group, settings)
+end
+
 M.base46 = {
-	theme = "mountain",
+	theme = "custom_mountain",
 	hl_override = highlights.override,
 	hl_add = highlights.add,
 	integrations = {

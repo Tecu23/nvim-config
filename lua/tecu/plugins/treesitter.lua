@@ -14,6 +14,7 @@ return {
 		"TSModuleInfo",
 		"TSToggle",
 		"TSBufToggle",
+		"TSHighlightCapturesUnderCursor",
 	},
 	dependencies = {
 		{

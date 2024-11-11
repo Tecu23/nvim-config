@@ -1,10 +1,11 @@
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
+vim.opt.termguicolors = true
 
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
+-- convert tabs to spaces
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 
 -- Make line numbers default
 vim.opt.number = true
@@ -28,6 +29,10 @@ vim.opt.undofile = true
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.smartindent = true
+
+-- Display lines as one long line
+vim.opt.wrap = false
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
@@ -48,6 +53,8 @@ vim.opt.splitbelow = true
 --  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- make EndOfBuffer invisible
+vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "", lastline = " " }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
@@ -56,4 +63,8 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 20
+vim.opt.sidescrolloff = 20
+
+-- Set highlight on search, but clear on pressing <Esc> in normal mode
+vim.opt.hlsearch = true

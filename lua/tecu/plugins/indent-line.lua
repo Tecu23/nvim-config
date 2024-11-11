@@ -1,5 +1,4 @@
 ---@type NvPluginSpec
--- NOTE: Show Indentlines
 return {
 	"lukas-reineke/indent-blankline.nvim",
 	enabled = false,

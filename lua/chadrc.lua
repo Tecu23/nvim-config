@@ -10,7 +10,7 @@ M.base46 = {
 		"notify",
 		"trouble",
 	},
-	-- transparency = true,
+	transparency = true,
 }
 
 M.ui = {

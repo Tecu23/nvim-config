@@ -21,7 +21,7 @@ require("lazy").setup({
 		-- install missing plugins on startup. This doesn't increase startup time.
 		missing = true,
 		-- try to load one of these colorschemes when starting an installation during startup
-		colorscheme = { "kanagawa" },
+		-- colorscheme = { "kanagawa" },
 	},
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the

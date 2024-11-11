@@ -1,7 +1,15 @@
 local M = {}
 
+local highlights = require("tecu.utils.highlights")
+
 M.base46 = {
-	theme = "ayu_dark",
+	theme = "mountain",
+	hl_override = highlights.override,
+	hl_add = highlights.add,
+	integrations = {
+		"notify",
+		"trouble",
+	},
 	-- transparency = true,
 }
 

@@ -1,6 +1,6 @@
 local M = {}
 
-local highlights = require("tecu.utils.highlights")
+local highlights = require("tecu.config.highlights")
 
 M.base46 = {
 	theme = "mountain",
@@ -41,7 +41,7 @@ M.ui = {
 			"cwd",
 			"total_lines",
 		},
-		modules = require("tecu.utils.statusline").modules,
+		modules = require("tecu.config.statusline").modules,
 	},
 	tabufline = { enabled = false },
 }

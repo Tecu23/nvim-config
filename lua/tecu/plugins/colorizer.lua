@@ -18,7 +18,7 @@ return {
 			-- True is same as normal
 			tailwind = true,
 			sass = { enable = true, parsers = { "css" } }, -- Enable sass colors
-			virtualtext = "■",
+			virtualtext = "󱓻",
 			always_update = true,
 		},
 		filetypes = {

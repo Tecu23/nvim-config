@@ -40,12 +40,18 @@ function M.setup_servers()
 	vim.list_extend(ensure_installed, {
 		-- Linters
 		"eslint-lsp",
+		"golangci-lint",
 
 		-- Formatters
 		"stylua", -- Used to format Lua code
 		"prettierd",
 		"rustywind", -- Tailwind css formatter
 		-- "rubocop",
+		"gofumpt",
+
+		"goimports",
+		"goimports-reviser",
+		"golines",
 	})
 	require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

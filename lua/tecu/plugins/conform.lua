@@ -68,6 +68,8 @@ return { -- Autoformat
 			-- ruby = { "rubocop" },
 			-- Conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },
+			--
+			go = { "gofumpt", "goimports-reviser", "goimports", "golines" },
 		},
 	},
 }

@@ -122,13 +122,20 @@ return {
 				if next(clients) == nil then
 					return msg
 				end
+				local client_names = {}
+
 				for _, client in ipairs(clients) do
 					local filetypes = client.config.filetypes
 					if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-						return client.name
+						table.insert(client_names, client.name)
 					end
 				end
-				return msg
+
+				if next(client_names) == nil then
+					return msg
+				else
+					return table.concat(client_names, ",")
+				end
 			end,
 			icon = "",
 			color = { fg = colors.blue, gui = "bold" },

@@ -132,7 +132,7 @@ return {
 				"NoiceSplitBorder",
 				"NoiceVirtualText",
 
-				"NotifyBackground",
+				-- "NotifyBackground",
 			},
 		})
 		transparent.clear_prefix("BufferLine")

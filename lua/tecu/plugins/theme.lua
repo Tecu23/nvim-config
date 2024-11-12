@@ -9,4 +9,7 @@ return {
 			theme = "dragon",
 		},
 	},
+	{
+		"mountain-theme/vim",
+	},
 }

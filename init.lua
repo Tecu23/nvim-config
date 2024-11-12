@@ -8,4 +8,4 @@ require("tecu.core") -- Core Settings
 
 require("tecu.config.lazy") -- Plugin Manager
 
-vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme mountain")

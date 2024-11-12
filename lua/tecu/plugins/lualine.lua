@@ -51,26 +51,26 @@ return {
 			function()
 				local mode_icon = "" -- Icon for the mode
 				local mode_names = {
-					n = "NORMAL",
-					i = "INSERT",
-					v = "VISUAL",
-					[""] = "VISUAL",
-					V = "VISUAL",
-					c = "COMMAND",
-					no = "NORMAL",
-					s = "SELECT",
-					S = "SELECT",
-					[""] = "SELECT",
-					ic = "INSERT",
-					R = "REPLACE",
-					Rv = "REPLACE",
-					cv = "COMMAND",
-					ce = "COMMAND",
-					r = "HIT-ENTER",
-					rm = "MORE",
-					["r?"] = "CONFIRM",
-					["!"] = "SHELL",
-					t = "TERMINAL",
+					n = "Normal",
+					i = "Insert",
+					v = "Visual",
+					[""] = "Visual",
+					V = "Visual",
+					c = "Command",
+					no = "Normal",
+					s = "Select",
+					S = "Select",
+					[""] = "Select",
+					ic = "Insert",
+					R = "Replace",
+					Rv = "Replace",
+					cv = "Command",
+					ce = "Command",
+					r = "Hit-Enter",
+					rm = "More",
+					["r?"] = "Confirm",
+					["!"] = "Shell",
+					t = "Terminal",
 				}
 				-- Get the mode name based on vim.fn.mode()
 				local current_mode = vim.fn.mode()
@@ -114,7 +114,6 @@ return {
 		}
 
 		local lsp = {
-			"lsp",
 			-- Lsp server name .
 			function()
 				local msg = "No Active Lsp"
@@ -131,8 +130,8 @@ return {
 				end
 				return msg
 			end,
-			icon = " LSP:",
-			color = { fg = "#ffffff", gui = "bold" },
+			icon = "",
+			color = { fg = colors.blue, gui = "bold" },
 		}
 
 		local diagnostics = {
@@ -193,7 +192,7 @@ return {
 				lualine_b = {},
 				lualine_c = { mode, filename },
 				lualine_x = { lsp },
-				lualine_y = { diagnostics, diff },
+				lualine_y = { diff, diagnostics },
 				lualine_z = { git, right_margin },
 			},
 			inactive_sections = {

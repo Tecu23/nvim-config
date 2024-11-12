@@ -1,5 +1,3 @@
----@type NvPluginSpec
--- NOTE: Commenter
 return {
 	"numToStr/Comment.nvim",
 	enabled = false,

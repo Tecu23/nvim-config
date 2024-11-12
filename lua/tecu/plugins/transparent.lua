@@ -1,4 +1,3 @@
----@type NvPluginSpec
 return {
 	"xiyaowong/transparent.nvim",
 	lazy = false,
@@ -139,9 +138,5 @@ return {
 		transparent.clear_prefix("BufferLine")
 		transparent.clear_prefix("NeoTree")
 		transparent.clear_prefix("lualine")
-
-		vim.keymap.set("n", "<leader>td", ":TransparentDisable<cr>")
-		vim.keymap.set("n", "<leader>te", ":TransparentEnable<cr>")
-		vim.keymap.set("n", "<leader>tt", ":TransparentToggle<cr>")
 	end,
 }

@@ -1,9 +1,7 @@
----@type NvPluginSpec
 -- NOTE: Terminal Integration
 return {
 	"akinsho/toggleterm.nvim",
 	init = function()
-		local utils = require("tecu.utils.toggleterm")
 		vim.keymap.set(
 			"n",
 			"<leader>tf",
@@ -24,10 +22,6 @@ return {
 			"<cmd>ToggleTerm direction=vertical<cr>",
 			{ desc = "ToggleTerm | Vertical Terminal", silent = true }
 		)
-
-		vim.keymap.set("n", "<leader>gg", function()
-			utils.git()
-		end, { desc = "ToggleTerm | Lazygit", silent = true })
 	end,
 	cmd = {
 		"ToggleTerm",

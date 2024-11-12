@@ -1,5 +1,3 @@
----@type NvPluginSpec
--- NOTE: UI for messages, cmdline, and popup
 return {
 	"folke/noice.nvim",
 	lazy = false,

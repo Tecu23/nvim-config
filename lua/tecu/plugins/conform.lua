@@ -65,7 +65,7 @@ return { -- Autoformat
 			javascript = { "prettierd" },
 			javascriptreact = { "rustywind", "prettierd" },
 			--
-			ruby = { "rubocop" },
+			-- ruby = { "rubocop" },
 			-- Conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },
 		},

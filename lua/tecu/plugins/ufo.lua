@@ -1,4 +1,3 @@
----@type NvPluginSpec
 -- NOTE: Improve Folds
 return {
 	"kevinhwang91/nvim-ufo",

@@ -1,4 +1,3 @@
----@type NvPluginSpec
 -- NOTE: Syntax Highlighting
 return {
 	"nvim-treesitter/nvim-treesitter",

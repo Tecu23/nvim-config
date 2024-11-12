@@ -1,4 +1,3 @@
----@type NvPluginSpec
 return {
 	"ThePrimeagen/harpoon",
 	init = function()

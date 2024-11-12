@@ -23,12 +23,8 @@ M.override = {
 	LspReferenceWrite = { link = "Underlined" },
 	TblineFill = { link = "Normal" },
 	NvimTreeRootFolder = { link = "NvimTreeFolderName" },
-	["@variable"] = { fg = "#8fb4b5" },
-	["@variable.builtin"] = { fg = "#ff9e64", italic = true },
-	["@tag"] = { fg = "#8fb4b5" }, -- Color for JSX tags
-	["@tag.attribute"] = { fg = "#8fb4b5" }, -- Color for JSX tag attributes
-	["@tag.delimiter"] = { fg = "#bd93f9" }, -- Color for delimiters (e.g., <, />)
-	htmlTagName = { fg = "#8fb4b5" }, -- Color for HTML tag names
+	["@variable"] = { fg = "#9EC3C4" },
+	htmlTagName = { fg = "#9EC3C4" }, -- Color for HTML tag names
 	["@lsp.type.parameter.typescriptreact"] = { link = "@variable" },
 }
 

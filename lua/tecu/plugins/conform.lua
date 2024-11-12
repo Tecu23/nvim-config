@@ -37,7 +37,7 @@ return { -- Autoformat
 				prepend_args = { "--indent-width", "4" },
 			},
 			prettierd = {
-				prepend_args = { "--print-width=120", "--tab-width=4" },
+				-- prepend_args = { "--print-width=120", "--tab-width=4" },
 			},
 			rubocop = function()
 				return {

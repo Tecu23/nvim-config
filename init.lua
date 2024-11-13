@@ -1,11 +1,14 @@
 -- Set <space> as the leader key
--- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require("tecu.core") -- Core Settings
+require("tecu.core.options") -- Basic Options
+require("tecu.core.autocommands") -- Autocommands
 
 require("tecu.config.lazy") -- Plugin Manager
 
-vim.cmd("colorscheme mountain")
+require("tecu.core.keymaps") -- Key Mappings
+
+-- Finally set colorscheme
+vim.cmd("colorscheme rose-pine")

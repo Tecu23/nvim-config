@@ -1,6 +1,6 @@
 -- Should be where the actual themes are kept
 return {
-	"rktjmp/lush.nvim",
+	{ "rktjmp/lush.nvim" },
 	{ "rose-pine/neovim", name = "rose-pine" },
 	{
 		"rebelot/kanagawa.nvim",
@@ -9,7 +9,6 @@ return {
 			theme = "dragon",
 		},
 	},
-	{
-		"mountain-theme/vim",
-	},
+	{ "mountain-theme/vim" },
+	{ "tiagovla/tokyodark.nvim" },
 }

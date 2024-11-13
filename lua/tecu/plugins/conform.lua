@@ -36,40 +36,23 @@ return { -- Autoformat
 			stylua = {
 				prepend_args = { "--indent-width", "4" },
 			},
-			prettierd = {
-				-- prepend_args = { "--print-width=120", "--tab-width=4" },
-			},
-			rubocop = function()
-				return {
-					command = "rubocop",
-					args = {
-						"--server",
-						"--fix-layout",
-						"--autocorrect-all",
-						"--format",
-						"files",
-						"--stderr",
-						"--stdin",
-						"$FILENAME",
-					},
-					stdin = true,
-				}
-			end,
+			prettierd = {},
 		},
 		formatters_by_ft = {
 			lua = { "stylua" },
 			--
 			css = { "rustywind", "prettierd" },
+			html = { "rustywind", "prettierd" },
+			markdown = { "prettierd" },
 			typescript = { "prettierd" },
 			typescriptreact = { "rustywind", "prettierd" },
 			javascript = { "prettierd" },
 			javascriptreact = { "rustywind", "prettierd" },
 			--
-			-- ruby = { "rubocop" },
-			-- Conform can also run multiple formatters sequentially
-			-- python = { "isort", "black" },
+			ruby = { "rufo" },
 			--
 			go = { "gofumpt", "goimports-reviser", "goimports", "golines" },
+			--
 		},
 	},
 }

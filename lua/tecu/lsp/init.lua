@@ -1,5 +1,3 @@
--- lua/tecu/lsp/init.lua
-
 local M = {}
 
 local on_attach = require("tecu.lsp.setup")
@@ -39,20 +37,23 @@ function M.setup_servers()
 	local ensure_installed = vim.tbl_keys(servers or {})
 	vim.list_extend(ensure_installed, {
 		-- Linters
-		"eslint-lsp",
-		"golangci-lint",
-		"markdownlint",
+		"eslint-lsp", -- .js, .ts
+		"golangci-lint", -- .go
+		"markdownlint", -- .md
+		"rubocop", -- .rb
 
 		-- Formatters
-		"stylua", -- Used to format Lua code
-		"prettierd",
-		"rustywind", -- Tailwind css formatter
-		-- "rubocop",
-		"gofumpt",
+		"stylua", -- .lua
 
-		"goimports",
-		"goimports-reviser",
-		"golines",
+		"prettierd", -- .css, .html, .js, .jsx, .ts, .tsx, .md
+		"rustywind", -- .css, .html, .js, .jsx, .ts, .tsx
+
+		"rufo", -- .rb
+
+		"gofumpt", -- .go
+		"goimports", -- .go
+		"goimports-reviser", -- .go
+		"golines", -- .go
 	})
 	require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

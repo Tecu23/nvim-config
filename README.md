@@ -1,112 +1,95 @@
-# Neovim Configuration
+# Neovim Configuration [![](https://img.shields.io/badge/Neovim-0.10+-blueviolet.svg?style=for-the-badge&color=000F10&logo=Neovim&logoColor=green&labelColor=302D41)](https://github.com/neovim/neovim)
 
-Welcome to my Neovim configuration! This setup is designed to make development smoother and more efficient, with a focus on frontend development (JavaScript, TypeScript, and React) while leveraging a powerful LSP setup, custom UI enhancements, and cross-platform consistency.
+Welcome to my Neovim configuration!
+This setup is designed to make development smoother and more efficient,
+with a focus on full-stack development, (frontend via JavaScript, TypeScript,
+and React & backend via Golang and Ruby) while leveraging a powerful LSP setup,
+custom UI enhancements, and cross-platform consistency.
 
-## Features
+<br/>
 
-- **LSP Integration**: Full support for JavaScript, TypeScript, and other languages with language server configurations.
-- **Auto-Formatting**: Automatically format code and organize imports on save using `conform.nvim` and `typescript-tools`.
-- **Enhanced UI**: Powered by `NvChad` components for an improved statusline, LSP indicators, and overall UI polish.
-- **Cross-Platform**: Configured for both macOS and Linux environments, ensuring consistency across systems.
-- **Organized Structure**: Clean folder structure for easy management of settings, LSP configurations, and plugins.
+![Screenshot](./images/ss.png)
 
-## Folder Structure
+## 📁 Folder Structure
 
 The configuration is structured for easy navigation and extensibility:
 
 ```plaintext
 ~/.config/nvim/
-├── init.lua            # Main Neovim configuration file
+├── init.lua                  # Main Neovim configuration file
 ├── lua/
+│   ├── config/
+│   │   └── lazy.lua          # Main Lazy config
+│   ├── core/
+│   │   ├── autocommand.lua
+│   │   ├── options.lua       # General options
+│   │   └── keymaps.lua       # Generic keymaps to make experience better
 │   ├── lsp/
-│   │   ├── init.lua    # Main LSP configurations
-│   │   ├── setup.lua   # Generic setup functions for LSP
-│   │   └── servers/    # Folder for individual server configurations
-│   │       ├── ts.lua  # TypeScript LSP configuration
-│   │       └── js.lua  # JavaScript LSP configuration
-│   ├── plugins/        # Plugin configurations and setup
-│   └── settings/       # General editor settings (keybindings, options, etc.)
-└── README.md           # This file
+│   │   ├── init.lua          # Main LSP configurations
+│   │   ├── setup.lua         # Generic setup functions for LSP
+│   │   └── servers/          # Folder for individual server configurations
+│   │       ├── ts_ls.lua     # TypeScript LSP configuration
+│   │       ├── gopls.lua     # Golang LSP configuration
+│   │       └── ...
+│   ├── plugins/              # Plugin configurations and setup
+│   ├── utils/                # Helper functions
+│   └── ui/                   # Custom Icons and other ui items
+└── README.md
 ```
 
-## Key Plugins
-
-- **[`conform.nvim`](https://github.com/stevearc/conform.nvim)**: Handles auto-formatting and organizing imports on save, making code cleanup effortless.
-- **[`typescript-tools.nvim`](https://github.com/someone/typescript-tools.nvim)**: Provides extended TypeScript support for a better coding experience.
-- **Additional Utilities**: Plugins for code navigation (`telescope.nvim`), Git integration (`gitsigns.nvim`), syntax highlighting (`nvim-treesitter`), and more.
-
-## Installation
+## 💻 Installation
 
 ### Prerequisites
 
-- **Neovim 0.10+**: Ensure that you have Neovim installed and up-to-date.
-  - For macOS:
-    ```bash
-    brew install neovim
-    ```
-  - For Linux (Debian-based):
-    ```bash
-    sudo apt install neovim
-    ```
+- [git](https://git-scm.com/) ≥ 2.19.0
+- [Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim) ≥ v0.10.0
 
-### Setup
+**Optional**, but highly recommended:
 
-1. **Clone the Configuration**
-   Replace your existing Neovim configuration by cloning this repo:
+- [bat](https://github.com/sharkdp/bat)
+- [fd](https://github.com/sharkdp/fd)
+- [fzf](https://github.com/junegunn/fzf)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
 
-   ```bash
-   git clone https://github.com/yourusername/neovim-config ~/.config/nvim
-   ```
+### Install
 
-2. **Install Plugins**
-   Launch Neovim and run the following command to install the required plugins:
+1. Let's clone this repo! Clone to `~/.config/nvim`
 
-   ```vim
-   :PackerSync
-   ```
+```bash
+mkdir -p ~/.config
+```
 
-3. **Install Language Servers**
-   Install necessary language servers globally for LSP functionality:
+```bash
+git clone git@github.com:Tecu23/nvim-config.git ~/.config/nvim
+```
 
-   ```bash
-   npm install -g typescript-language-server
-   npm install -g vscode-langservers-extracted  # For JavaScript, CSS, HTML, etc.
-   ```
+```bash
+cd ~/.config/nvim
+```
 
-4. **macOS/Linux Compatibility**
-   - If you're running macOS, there may be differences in behavior for JSX inspection (e.g., `:Inspect` command). Specific configurations for platform differences can be adjusted in the respective `servers` files under `lsp/`.
+2. Run `nvim` (will install all plugins the first time).
 
-## Usage
+It's highly recommended running `:checkhealth` to ensure your system is healthy
+and meet the requirements.
 
-### Common Commands
+## ✔️ Features
 
-- **Format on Save**: Triggered automatically for `.ts`, `.js`, `.jsx`, and `.tsx` files.
-- **LSP Actions**: Use commands like `:LspHover`, `:LspDefinition`, and `:LspReferences` to interact with the LSP.
-- **Telescope**: Quickly search files, symbols, and more with `:Telescope find_files` or `:Telescope live_grep`.
+- **Plugin Management**: Efficiently manage plugins with [lazy.nvim](https://github.com/folke/lazy.nvim).
+- **Enhanced Searching**: Improve searching with [flash.nvim](https://github.com/folke/flash.nvim).
+- **LSP Integration**: Full support for JavaScript, TypeScript, and many more with
+  language server configurations with[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).
+- **Autocompletion**: Experience intelligent autocompletion with [nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
+- **Auto-Formatting**: Automatically format code and
+  organize imports on save using `conform.nvim` and `typescript-tools`.
+- **Formatting**: Keep your code clean with [conform.nvim](https://github.com/stevearc/conform.nvim).
+- **Syntax Highlighting**: Enjoy enhanced syntax highlighting with [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
+- **Fuzzy Finding**: Find files and more with ease using [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
+- **Integrated Terminal**: Access a terminal within Neovim using [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim).
+- **Git Integration**: Effortlessly manage Git repositories
+  with [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) and [lazygit](https://github.com/jesseduffield/lazygit).
+- **Markdown Preview**: Preview your Markdown files with [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim).
 
-### Custom Keybindings
+## ✨ Contributing
 
-Keybindings are set up to enhance productivity:
-
-- **Leader Key**: `\` is used as the leader key.
-- **File Search**: `<Leader>ff` to find files with Telescope.
-- **Code Formatting**: `<Leader>f` to manually format the current buffer.
-
-Keybindings can be adjusted in `lua/settings/keybindings.lua`.
-
-## Troubleshooting
-
-- **`:Inspect` Command on macOS**: If `:Inspect` shows no marks on JSX tags, ensure you have the correct LSP settings for macOS in the `servers/` configurations.
-- **Plugin Issues**: Run `:PackerSync` to ensure all plugins are up-to-date.
-
-## Contributing
-
-Feel free to contribute to this configuration by opening issues or submitting pull requests. Any suggestions for improving compatibility, adding features, or fixing bugs are welcome.
-
-## License
-
-This Neovim configuration is open-source and available under the MIT License. See the `LICENSE` file for more details.
-
----
-
-Thank you for checking out my Neovim configuration! I hope it helps you become more productive and enjoy your development experience even more.
+If you find anything that needs improving, do not hesitate to
+point it out or create a PR.

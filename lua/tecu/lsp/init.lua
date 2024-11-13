@@ -41,6 +41,7 @@ function M.setup_servers()
 		-- Linters
 		"eslint-lsp",
 		"golangci-lint",
+		"markdownlint",
 
 		-- Formatters
 		"stylua", -- Used to format Lua code

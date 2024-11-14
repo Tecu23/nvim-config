@@ -49,7 +49,7 @@ return { -- Autoformat
 			javascript = { "prettierd" },
 			javascriptreact = { "rustywind", "prettierd" },
 			--
-			ruby = { "rufo" },
+			-- ruby = { "rufo" },
 			--
 			go = { "gofumpt", "goimports-reviser", "goimports", "golines" },
 			--

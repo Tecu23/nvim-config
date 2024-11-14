@@ -45,6 +45,8 @@ return {
 		end
 	end,
 	config = function()
+		local icons = require("tecu.ui.icons")
+
 		require("neo-tree").setup({
 			close_if_last_window = false, -- Close Neo-tree if it is the last windows
 			enable_git_status = true,
@@ -73,14 +75,14 @@ return {
 					highlight = "NeoTreeIndentMarker",
 					-- expander config, needed for nesting files
 					with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-					expander_collapsed = "",
+					expander_collapsed = icons.ui.Selected, -- "",
 					expander_expanded = "",
 					expander_highlight = "NeoTreeExpander",
 				},
 				icon = {
-					folder_closed = "",
-					folder_open = "",
-					folder_empty = "",
+					folder_closed = icons.kind.Folder, -- "",
+					folder_open = icons.kind.FolderOpened, -- "",
+					folder_empty = icons.kind.FolderEmpty, --"",
 					-- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
 					-- then these will never be used.
 					default = "*",
@@ -98,16 +100,16 @@ return {
 				git_status = {
 					symbols = {
 						-- Change type
-						added = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
-						modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-						deleted = "", -- this can only be used in the git_status source
-						renamed = "➜", -- this can only be used in the git_status source
+						added = icons.git.FileAdded, -- "✚",
+						modified = icons.git.FileModified, -- "",
+						deleted = icons.git.FileDeleted, -- "",
+						renamed = icons.git.FileRenamed, -- "➜",
 						-- Status type
-						untracked = "",
-						ignored = "",
-						unstaged = "",
-						staged = "",
-						conflict = "",
+						untracked = icons.git.Untracked, -- "",
+						ignored = icons.git.Ignored, -- "",
+						unstaged = icons.git.Unstaged, -- "",
+						staged = icons.git.Staged, -- "",
+						conflict = icons.git.Conflict, -- "",
 					},
 				},
 				-- If you don't want to use these columns, you can set `enabled = false` for each of them individually

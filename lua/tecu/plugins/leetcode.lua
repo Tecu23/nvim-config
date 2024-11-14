@@ -2,12 +2,13 @@ local leet_arg = "leetcode"
 return {
 	"kawre/leetcode.nvim",
 	lazy = leet_arg ~= vim.fn.argv()[1],
-	-- build = ":TSUpdate html",
+	build = ":TSUpdate html",
+	cmd = { "Leet", "Leetcode" },
 	opts = {
 		arg = leet_arg,
 		lang = "golang",
 		plugins = {
-			non_standalone = false,
+			non_standalone = true,
 		},
 		injector = {
 			golang = {

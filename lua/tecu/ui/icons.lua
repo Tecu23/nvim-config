@@ -14,6 +14,8 @@ return {
 		Field = "",
 		File = "󰈙",
 		Folder = "󰉋",
+		FolderOpened = "",
+		FolderEmpty = "",
 		Function = "󰊕",
 		Interface = "",
 		Keyword = "󰌋",
@@ -48,6 +50,17 @@ return {
 		LineRemoved = "",
 		LineLeft = "▎",
 		LineMiddle = "│",
+
+		FileAdded = "✚",
+		FileModified = "",
+		FileDeleted = "",
+		FileRenamed = "➜",
+
+		Untracked = "",
+		Ignored = "",
+		Unstaged = "",
+		Staged = "",
+		Conflict = "",
 	},
 	ui = {
 		Search = "",

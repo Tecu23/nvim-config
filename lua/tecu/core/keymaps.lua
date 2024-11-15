@@ -74,10 +74,6 @@ vim.keymap.set("n", "<leader>nv", function()
 	return vim.notify(version, vim.log.levels.INFO, { title = "Neovim Version" })
 end, { desc = "[N]eovim Version", silent = true })
 
--- Golang KeyMaps
-vim.keymap.set("n", "<leader>gsj", "<cmd> GoTagAdd json <CR>", { desc = "Add json struct tags" })
-vim.keymap.set("n", "<leader>gsy", "<cmd> GoTagAdd yaml <CR>", { desc = "Add yaml struct tags" })
-
 --  Typescript Tools Code Actions
 vim.keymap.set("n", "<leader>cto", "<cmd>TSToolsOrganizeImports<cr>", { desc = "[C]ode [T]ypeScript Organize Imports" })
 vim.keymap.set("n", "<leader>cts", "<cmd>TSToolsSortImports<cr>", { desc = "[C]ode [T]ypeScript Sort Imports" })

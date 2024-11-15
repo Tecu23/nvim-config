@@ -54,6 +54,10 @@ function M.setup_servers()
 		"goimports", -- .go
 		"goimports-reviser", -- .go
 		"golines", -- .go
+
+		-- Other
+		"iferr", -- ".go"
+		"impl", --".go"
 	})
 	require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

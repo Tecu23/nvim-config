@@ -38,7 +38,7 @@ function M.setup_servers()
 	vim.list_extend(ensure_installed, {
 		-- Linters
 		"eslint-lsp", -- .js, .ts
-		"golangci-lint", -- .go
+		"revive", -- .go
 		"markdownlint", -- .md
 		"rubocop", -- .rb
 

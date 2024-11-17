@@ -8,7 +8,7 @@ return {
 				markdown = { "markdownlint" },
 				javascript = { "eslint" },
 				typescript = { "eslint" },
-				go = { "golangci_lint" },
+				go = { "revive" },
 				-- ruby = { "rubocop" },
 			}
 

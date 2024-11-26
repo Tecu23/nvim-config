@@ -27,7 +27,7 @@ return {
 				":lua require('telescope.builtin').find_files({cwd = '~/.config/nvim/' })<CR>"
 			),
 			dashboard.button("u", "  Update plugins", ":PackerSync<CR>"),
-			dashboard.button("q", "   Quit", ":qa<CR>"),
+			dashboard.button("q", "  Quit", ":qa<CR>"),
 		}
 
 		for _, button in ipairs(dashboard.section.buttons.val) do

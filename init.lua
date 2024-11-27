@@ -9,6 +9,3 @@ require("tecu.core.autocommands") -- Autocommands
 require("tecu.config.lazy") -- Plugin Manager
 
 require("tecu.core.keymaps") -- Key Mappings
-
--- Finally set colorscheme
-vim.cmd("colorscheme rose-pine")

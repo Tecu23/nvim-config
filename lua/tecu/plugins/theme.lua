@@ -4,17 +4,25 @@ return {
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",
-		opts = {
-			on_highlights = function(hl, c)
-				hl.TelescopeSelection = { bg = c.bg_highlight, fg = c.fg }
-			end,
+		config = function()
+			require("rose-pine").setup({
 
-			styles = {
-				bold = true,
-				italic = true,
-				transparency = true,
-			},
-		},
+				highlight_groups = {
+					CursorLine = { bg = "#2e2e35" },
+					RenderMarkdownCode = { bg = "#32363f" },
+					RenderMarkdownCodeInline = { bg = "none" },
+				},
+
+				styles = {
+					bold = true,
+					italic = true,
+					transparency = true,
+				},
+			})
+
+			-- Finally set colorscheme
+			vim.cmd("colorscheme rose-pine")
+		end,
 	},
 	{
 		"rebelot/kanagawa.nvim",

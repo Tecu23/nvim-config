@@ -41,6 +41,7 @@ function M.setup_servers()
 		"revive", -- .go
 		"markdownlint", -- .md
 		"rubocop", -- .rb
+		"jsonlint", -- .json
 
 		-- Formatters
 		"stylua", -- .lua

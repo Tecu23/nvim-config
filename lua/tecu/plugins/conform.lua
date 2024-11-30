@@ -41,13 +41,14 @@ return { -- Autoformat
 		formatters_by_ft = {
 			lua = { "stylua" },
 			--
-			css = { "rustywind", "prettierd" },
-			html = { "rustywind", "prettierd" },
+			css = { "prettierd" },
+			html = { "prettierd" },
+			json = { "prettierd" },
 			markdown = { "prettierd" },
 			typescript = { "prettierd" },
-			typescriptreact = { "rustywind", "prettierd" },
+			typescriptreact = { "prettierd" },
 			javascript = { "prettierd" },
-			javascriptreact = { "rustywind", "prettierd" },
+			javascriptreact = { "prettierd" },
 			--
 			-- ruby = { "rufo" },
 			--

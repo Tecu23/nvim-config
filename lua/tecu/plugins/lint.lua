@@ -9,6 +9,7 @@ return {
 				javascript = { "eslint" },
 				typescript = { "eslint" },
 				go = { "revive" },
+				json = { "jsonlint" },
 				-- ruby = { "rubocop" },
 			}
 

@@ -11,6 +11,9 @@ return {
 				go = { "revive" },
 				json = { "jsonlint" },
 				-- ruby = { "rubocop" },
+
+				bash = { "shellcheck" },
+				sh = { "shellcheck" },
 			}
 
 			lint.linters.golangci_lint = {

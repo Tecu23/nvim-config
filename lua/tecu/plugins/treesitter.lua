@@ -23,6 +23,7 @@ return {
 			"markdown",
 			"markdown_inline",
 			"regex",
+			"tmux",
 		},
 		-- Autoinstall languages that are not installed
 		auto_install = true,

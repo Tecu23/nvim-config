@@ -54,6 +54,8 @@ return { -- Autoformat
 			--
 			go = { "gofumpt", "goimports-reviser", "goimports", "golines" },
 			--
+			bash = { "shfmt" },
+			sh = { "shfmt" },
 		},
 	},
 }

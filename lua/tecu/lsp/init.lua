@@ -43,6 +43,8 @@ function M.setup_servers()
 		"rubocop", -- .rb
 		"jsonlint", -- .json
 
+		"shellcheck", -- .sh, .zsh
+
 		-- Formatters
 		"stylua", -- .lua
 
@@ -55,6 +57,8 @@ function M.setup_servers()
 		"goimports", -- .go
 		"goimports-reviser", -- .go
 		"golines", -- .go
+
+		"shfmt", -- .sh, .zsh
 
 		-- Other
 		"iferr", -- ".go"

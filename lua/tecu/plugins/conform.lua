@@ -56,6 +56,13 @@ return { -- Autoformat
 			--
 			bash = { "shfmt" },
 			sh = { "shfmt" },
+			make = {
+				{
+					command = "shfmt",
+					args = { "-filename", "Makefile" }, -- Specific tag for makefile
+					stdin = true,
+				},
+			},
 		},
 	},
 }

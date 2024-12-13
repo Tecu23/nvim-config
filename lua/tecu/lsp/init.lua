@@ -58,11 +58,12 @@ function M.setup_servers()
 		"goimports-reviser", -- .go
 		"golines", -- .go
 
-		"shfmt", -- .sh, .zsh
+		"shfmt", -- .sh, .zsh, Makefile
 
 		-- Other
 		"iferr", -- ".go"
 		"impl", --".go"
+		"checkmake", -- "Makefile"
 	})
 	require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

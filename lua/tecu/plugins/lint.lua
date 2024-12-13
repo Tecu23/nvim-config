@@ -14,6 +14,7 @@ return {
 
 				bash = { "shellcheck" },
 				sh = { "shellcheck" },
+				make = { "checkmake" },
 			}
 
 			lint.linters.golangci_lint = {

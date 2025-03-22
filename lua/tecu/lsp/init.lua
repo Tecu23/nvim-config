@@ -58,7 +58,15 @@ function M.setup_servers()
 		"goimports-reviser", -- .go
 		"golines", -- .go
 
+		"isort", -- .py
+		"black", -- .py
+
+		"yamlfmt", -- .yaml
+
+		"clang-format", -- .cpp
+
 		"shfmt", -- .sh, .zsh, Makefile
+		"asmfmt",
 
 		-- Other
 		"iferr", -- ".go"

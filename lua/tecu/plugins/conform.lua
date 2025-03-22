@@ -39,8 +39,10 @@ return { -- Autoformat
 			prettierd = {},
 		},
 		formatters_by_ft = {
+			asm = { "asmfmt" },
 			lua = { "stylua" },
 			--
+			astro = { "prettierd" },
 			css = { "prettierd" },
 			html = { "prettierd" },
 			json = { "prettierd" },
@@ -49,20 +51,25 @@ return { -- Autoformat
 			typescriptreact = { "prettierd" },
 			javascript = { "prettierd" },
 			javascriptreact = { "prettierd" },
+
+			python = { "isort", "black" },
 			--
 			-- ruby = { "rufo" },
 			--
 			go = { "gofumpt", "goimports-reviser", "goimports", "golines" },
+			yaml = { "yamlfmt" },
+
+			cpp = { "clang-format" },
 			--
 			bash = { "shfmt" },
 			sh = { "shfmt" },
-			make = {
-				{
-					command = "shfmt",
-					args = { "-filename", "Makefile" }, -- Specific tag for makefile
-					stdin = true,
-				},
-			},
+			-- make = {
+			-- 	{
+			-- 		command = "shfmt",
+			-- 		args = { "-filename", "Makefile" }, -- Specific tag for makefile
+			-- 		stdin = true,
+			-- 	},
+			-- },
 		},
 	},
 }

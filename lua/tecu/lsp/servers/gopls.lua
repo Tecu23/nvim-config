@@ -8,5 +8,11 @@ return {
 		analyses = {
 			unusedparams = true,
 		},
+		gopls = {
+			buildFlags = { "-tags=embed" },
+			env = {
+				GOFLAGS = "-tags=embed",
+			},
+		},
 	},
 }

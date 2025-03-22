@@ -41,7 +41,16 @@ return {
 					enable_preview = true,
 				},
 			},
-			-- pickers = {}
+			pickers = {
+				find_files = {
+					file_ignore_patterns = {
+						"node_modules",
+						".git",
+						".venv",
+					},
+					hidden = true,
+				},
+			},
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),

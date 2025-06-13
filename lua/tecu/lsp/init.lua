@@ -68,6 +68,8 @@ function M.setup_servers()
 		"shfmt", -- .sh, .zsh, Makefile
 		"asmfmt",
 
+		"sqlfmt", -- .sql
+
 		-- Other
 		"iferr", -- ".go"
 		"impl", --".go"

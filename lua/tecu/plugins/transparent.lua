@@ -1,6 +1,7 @@
 return {
 	"xiyaowong/transparent.nvim",
 	lazy = false,
+	opt = {},
 	config = function()
 		local transparent = require("transparent")
 		transparent.setup({

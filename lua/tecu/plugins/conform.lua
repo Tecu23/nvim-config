@@ -59,6 +59,8 @@ return { -- Autoformat
 			go = { "gofumpt", "goimports-reviser", "goimports", "golines" },
 			yaml = { "yamlfmt" },
 
+			sql = { "sqlfmt" },
+
 			cpp = { "clang-format" },
 			--
 			bash = { "shfmt" },

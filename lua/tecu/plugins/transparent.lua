@@ -46,6 +46,11 @@ return {
 				"Underlined",
 				"Repeat",
 
+				"WinBar",
+				"WinBarNC",
+
+				"LspInlayHint",
+
 				"StatusLine",
 				"StatusLineNC",
 

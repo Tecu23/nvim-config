@@ -109,3 +109,8 @@ and meet the requirements.
 
 If you find anything that needs improving, do not hesitate to
 point it out or create a PR.
+
+TODO:
+
+- research flash nvim
+- research dropbar nvim

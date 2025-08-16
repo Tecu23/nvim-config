@@ -375,9 +375,10 @@ return {
 				enable = true,
 				separator = " › ",
 				hide_keyword = false,
+				winblend = 0,
 				show_file = true,
 				folder_level = 2,
-				color_mode = true,
+				color_mode = false,
 			},
 			beacon = {
 				enable = true,

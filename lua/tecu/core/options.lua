@@ -1,72 +1,243 @@
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
-vim.opt.termguicolors = false
+-- ============================================================================
+-- Neovim Options Configuration for Full-Stack Development
+-- ============================================================================
+local opt = vim.opt
+local g = vim.g
 
--- convert tabs to spaces
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
+-- ============================================================================
+-- Line Numbers & Display
+-- ============================================================================
+opt.number = true -- Show absolute line numbers
+opt.relativenumber = true -- Show relative line numbers (hybrid mode with number)
+opt.cursorline = true -- Highlight the line nwhere the cursor is
+opt.signcolumn = "yes" -- Always show sign column (prevents text shift)
+-- opt.colorcolumn = "80,120" -- ?? Highlight columns 80 and 120 (common line length limits)
+opt.wrap = false -- Don't wrap long lines
+opt.linebreak = true -- If wrap is enabled, break at word boundaries
+opt.showbreak = "↪ " -- String to show at the start of wrapped lines
 
--- Make line numbers default
-vim.opt.number = true
-vim.opt.relativenumber = true
+-- ============================================================================
+-- Indentation & Formatting
+-- ============================================================================
+opt.expandtab = true -- Convert tabs to spaces
+opt.tabstop = 4 -- Number of spaces tabs count for
+opt.shiftwidth = 4 -- Size of an indent
+opt.softtabstop = 4 -- Number of spaces tab counts for in insert mode
+opt.smartindent = true -- Smart autoindenting on new lines
+opt.autoindent = true -- Copy indent from current line when starting new line
+opt.breakindent = true -- Preserve indentation in wrapped lines
+opt.shiftround = true -- Round indent to multiple of shiftwidth
 
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+-- Format options (use += and -= to add/remove flags)
+opt.formatoptions:remove({ "c", "r", "o" }) -- Don't auto-insert comment leader
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
-vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
-end)
+-- ============================================================================
+-- Search & Replace
+-- ============================================================================
+opt.ignorecase = true -- Case-insensitive search
+opt.smartcase = true -- Case-sensitive if search contains capitals
+opt.hlsearch = true -- Highlight search results
+opt.incsearch = true -- Show search matches as you type
+opt.inccommand = "split" -- Line preview of :substitute commands
+opt.gdefault = true -- ?? Add g flag to search/replace by default
 
--- Enable break indent
-vim.opt.breakindent = true
+-- ============================================================================
+-- UI & Visual Settings
+-- ============================================================================
+g.have_nerd_font = true -- Enable Nerd Font
+opt.termguicolors = false -- Enable 24-bit RGB colors
+opt.showmode = false -- Don't show mode (shown in statusline)
+opt.showcmd = true -- Show partial commands in the last line
+opt.cmdheight = 1 -- ?? Command line height
+opt.laststatus = 3 -- ?? Global statusline
+opt.showtabline = 2 -- ?? Always show tabline
+opt.pumheight = 10 -- Maximum number of items in popup menu
+opt.pumblend = 0 -- Popup menu transparency (0-100)
+opt.winblend = 0 -- Window transparency (0-100)
+opt.conceallevel = 0 -- Don't hide text with conceal syntax
+opt.list = true -- Show invisible characters
+opt.listchars = { -- Define which invisible characters to show
+	tab = "→ ",
+	trail = "·",
+	lead = "·",
+	extends = "»",
+	precedes = "«",
+	nbsp = "␣",
+	-- eol = "↲",
+}
+opt.fillchars = { -- Characters for UI elements
+	eob = " ", -- Empty lines at the end of buffer
+	fold = " ",
+	foldopen = "",
+	foldsep = " ",
+	foldclose = "",
+	lastline = " ",
+	diff = "╱",
+}
 
--- Save undo history
-vim.opt.undofile = true
+-- ============================================================================
+-- Editor Behavior
+-- ============================================================================
+opt.mouse = "a" -- Enable mouse support in all modes
+opt.clipboard = "unnamedplus" -- Use system clipboard
+opt.undofile = true -- Persistent undo history
+opt.undolevels = 10000 -- Maximum number of undo levels
+opt.swapfile = false -- Don't create swap files
+opt.backup = false -- Don't create backup files
+opt.writebackup = false -- Don't create backup before overwriting
+opt.updatetime = 250 -- Faster completion and CursorHold event
+opt.timeoutlen = 300 -- Time to wait for mapped sequence (ms)
+opt.ttimeoutlen = 10 -- Time to wait for key code sequence
+opt.hidden = true -- Allow switching buffers without saving
+opt.autoread = true -- Auto-reload files changed outside Neovim
+opt.confirm = true -- Ask for confirmation instead of erroring
+opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
+opt.backspace = "indent,eol,start" -- Allow backspace over everything
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.smartindent = true
+-- ============================================================================
+-- Scrolling
+-- ============================================================================
+opt.scrolloff = 20 -- Minimum lines to keep above/below cursor
+opt.sidescrolloff = 20 -- Minimum columns to keep left/right of cursor
+opt.smoothscroll = true -- Smooth scrolling (Neovim 0.10+)
 
--- Display lines as one long line
-vim.opt.wrap = false
+-- ============================================================================
+-- Splits & Windows
+-- ============================================================================
+opt.splitright = true -- Horizontal splits go below current window
+opt.splitbelow = true -- Vertical splits go to the right
+opt.splitkeep = "screen" -- Keep the text on the same screen line
+opt.equalalways = false -- Don't autoresize windows to be equal
 
--- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
+-- ============================================================================
+-- Folding
+-- ============================================================================
+opt.foldmethod = "expr" -- Use treesitter for folding
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldlevel = 99 -- Start with all folds open
+opt.foldlevelstart = 99 -- Start with all folds open
+opt.foldenable = true -- Enable folding
+opt.foldcolumn = "1" -- Don't show fold column
 
--- Decrease update time
-vim.opt.updatetime = 250
+-- ============================================================================
+-- Completion
+-- ============================================================================
+opt.completeopt = { "menu", "menuone", "noselect" } -- Completion options
+opt.wildmenu = true -- Enhanced command line completion
+opt.wildmode = "longest:full,full" -- Command line completion mode
+opt.wildignorecase = true -- Case insensitive filename completion
+opt.infercase = true -- Infer case in completion
 
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+-- Ignore these files/folders in completions
+opt.wildignore:append({
+	"*.o",
+	"*.obj",
+	"*.pyc",
+	"*.pyo",
+	"*.pyd",
+	"*.dll",
+	"*.class",
+	"*.jpg",
+	"*.jpeg",
+	"*.png",
+	"*.gif",
+	"*.bmp",
+	"*.ico",
+	"*.pdf",
+	"*.doc",
+	"*.docx",
+	".git",
+	".svn",
+	".hg",
+	"__pycache__",
+	"*.egg-info",
+	"node_modules",
+	"bower_components",
+	".sass-cache",
+	"*.min.js",
+	"*.min.css",
+	".DS_Store",
+	"Thumbs.db",
+	"*.swp",
+	"*.swo",
+	"*~",
+	"._*",
+})
 
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+-- ============================================================================
+-- Performance
+-- ============================================================================
+opt.lazyredraw = false -- Don't redraw during macros (can cause issues)
+opt.redrawtime = 1500 -- Time limit for syntax highlighting (ms)
+opt.synmaxcol = 300 -- Maximum column for syntax highlighting
+opt.ttyfast = true -- Faster terminal connection
 
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
--- make EndOfBuffer invisible
-vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "", lastline = " " }
+-- ============================================================================
+-- Spell Checking
+-- ============================================================================
+opt.spell = false -- Disable spell checking by default
+opt.spelllang = { "en_us" } -- Language for spell checking
 
--- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
+-- ============================================================================
+-- File Specific Settings
+-- ============================================================================
+opt.encoding = "utf-8" -- Internal encoding
+opt.fileencoding = "utf-8" -- File encoding
+opt.fileformat = "unix" -- Use Unix line endings
+opt.fixendofline = false -- Don't add newline at end of file
 
--- Show which line your cursor is on
-vim.opt.cursorline = true
+-- ============================================================================
+-- Session Options
+-- ============================================================================
+opt.sessionoptions = {
+	"buffers",
+	"curdir",
+	"tabpages",
+	"winsize",
+	"help",
+	"globals",
+	"skiprtp",
+	"folds",
+}
 
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 20
-vim.opt.sidescrolloff = 20
+-- ============================================================================
+-- Grep Program (use ripgrep if available)
+-- ============================================================================
+if vim.fn.executable("rg") == 1 then
+	opt.grepprg = "rg --vimgrep --smart-case --hidden"
+	opt.grepformat = "%f:%l:%c:%m"
+end
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
+-- ============================================================================
+-- Disable Built-in Plugins (for faster startup)
+-- ============================================================================
+local disabled_built_ins = {
+	"netrw",
+	"netrwPlugin",
+	"netrwSettings",
+	"netrwFileHandlers",
+	"gzip",
+	"zip",
+	"zipPlugin",
+	"tar",
+	"tarPlugin",
+	"getscript",
+	"getscriptPlugin",
+	"vimball",
+	"vimballPlugin",
+	"2html_plugin",
+	"logipat",
+	"rrhelper",
+	"spellfile_plugin",
+	"matchit",
+}
 
-vim.opt.pumblend = 0
+for _, plugin in pairs(disabled_built_ins) do
+	g["loaded_" .. plugin] = 1
+end
+
+-- ============================================================================
+-- Neovim Specific Features
+-- ============================================================================
+opt.shadafile = vim.fn.expand("~/.local/share/nvim/shada/main.shada")
+opt.shadaoptions = { "'1000", "<50", "s10", "h" }

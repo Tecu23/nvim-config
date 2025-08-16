@@ -282,53 +282,6 @@ keymap("n", "<leader>dd", "yyp", with_desc("Duplicate line"))
 keymap("v", "<leader>dd", "y`>p", with_desc("Duplicate selection"))
 
 -- ============================================================================
--- LSP Keymaps (will be active when LSP is attached)
--- ============================================================================
-
--- These will be set up per buffer when LSP attaches
--- Including them here for reference
-local lsp_keymaps = function(bufnr)
-	local buf_opts = function(desc)
-		return vim.tbl_extend("force", opts, { buffer = bufnr, desc = desc })
-	end
-
-	-- Navigation
-	keymap("n", "gd", vim.lsp.buf.definition, buf_opts("Go to definition"))
-	keymap("n", "gD", vim.lsp.buf.declaration, buf_opts("Go to declaration"))
-	keymap("n", "gi", vim.lsp.buf.implementation, buf_opts("Go to implementation"))
-	keymap("n", "gr", vim.lsp.buf.references, buf_opts("Show references"))
-	keymap("n", "gt", vim.lsp.buf.type_definition, buf_opts("Go to type definition"))
-
-	-- Hover and signature
-	keymap("n", "K", vim.lsp.buf.hover, buf_opts("Show hover"))
-	keymap("n", "gK", vim.lsp.buf.signature_help, buf_opts("Show signature help"))
-	keymap("i", "<C-k>", vim.lsp.buf.signature_help, buf_opts("Show signature help"))
-
-	-- Actions
-	keymap("n", "<leader>ca", vim.lsp.buf.code_action, buf_opts("Code action"))
-	keymap("v", "<leader>ca", vim.lsp.buf.code_action, buf_opts("Code action"))
-	keymap("n", "<leader>rn", vim.lsp.buf.rename, buf_opts("Rename symbol"))
-	keymap("n", "<leader>f", vim.lsp.buf.format, buf_opts("Format code"))
-	keymap("v", "<leader>f", vim.lsp.buf.format, buf_opts("Format selection"))
-
-	-- Diagnostics
-	keymap("n", "<leader>e", vim.diagnostic.open_float, buf_opts("Show diagnostics"))
-	keymap("n", "[d", vim.diagnostic.goto_prev, buf_opts("Previous diagnostic"))
-	keymap("n", "]d", vim.diagnostic.goto_next, buf_opts("Next diagnostic"))
-	keymap("n", "<leader>dl", vim.diagnostic.setloclist, buf_opts("Diagnostics to location list"))
-
-	-- Workspace
-	keymap("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, buf_opts("Add workspace folder"))
-	keymap("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, buf_opts("Remove workspace folder"))
-	keymap("n", "<leader>wl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, buf_opts("List workspace folders"))
-end
-
--- Export LSP keymaps function for use in LSP config
-_G.lsp_keymaps = lsp_keymaps
-
--- ============================================================================
 -- Plugin-Specific Keymaps (to be configured when plugins are installed)
 -- ============================================================================
 
@@ -364,15 +317,6 @@ keymap("n", "<leader>ghu", "<cmd>Gitsigns undo_stage_hunk<CR>", with_desc("Undo 
 keymap("n", "<leader>ghr", "<cmd>Gitsigns reset_hunk<CR>", with_desc("Reset hunk"))
 keymap("n", "<leader>ghp", "<cmd>Gitsigns preview_hunk<CR>", with_desc("Preview hunk"))
 keymap("n", "<leader>ghb", "<cmd>Gitsigns blame_line<CR>", with_desc("Blame line"))
-
--- Comment.nvim
-keymap("n", "gcc", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", with_desc("Toggle comment"))
-keymap(
-	"v",
-	"gc",
-	"<cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-	with_desc("Toggle comment")
-)
 
 -- ============================================================================
 -- Development Specific (Go, Ruby, React/TS)

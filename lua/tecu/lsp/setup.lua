@@ -1,94 +1,218 @@
+-- ============================================================================
+-- LSP Setup Module - Handles server installation and configuration
+-- ============================================================================
 local M = {}
--- Function to handle actions when an LSP attaches to a buffer
-function M.setup(event)
-	local map = function(keys, func, desc, mode)
-		mode = mode or "n"
-		vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+
+-- ============================================================================
+-- Server List
+-- ============================================================================
+local servers = {
+	-- Go
+	"gopls",
+
+	-- Ruby
+	"ruby_lsp",
+
+	-- Web Development
+	"html",
+	"cssls",
+	"tailwindcss",
+	"eslint",
+
+	-- JSON/YAML
+	"jsonls",
+	"yamlls",
+
+	-- Docker
+	"dockerls",
+	"docker_compose_language_service",
+
+	-- Lua
+	"lua_ls",
+
+	-- Python
+	"pyright",
+
+	-- Markdown
+	"marksman",
+
+	-- Bash
+	"bashls",
+
+	-- SQL
+	"sqls",
+
+	-- GraphQL
+	"graphql",
+
+	-- Prisma
+	"prismals",
+}
+
+-- ============================================================================
+-- Mason Setup
+-- ============================================================================
+function M.setup_mason()
+	local mason_ok, mason = pcall(require, "mason")
+	if not mason_ok then
+		vim.notify("Mason not found. Install mason.nvim for automatic LSP installation.", vim.log.levels.WARN)
+		return false
 	end
 
-	-- Jump to the definition of the word under your cursor.
-	--  This is where a variable was first declared, or where a function is defined, etc.
-	--  To jump back, press <C-t>.
-	map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-
-	-- Find references for the word under your cursor.
-	map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-
-	-- Jump to the implementation of the word under your cursor.
-	--  Useful when your language has ways of declaring types without an actual implementation.
-	map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-
-	-- Jump to the type of the word under your cursor.
-	--  Useful when you're not sure what type a variable is and you want to see
-	--  the definition of its *type*, not where it was *defined*.
-	map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-
-	-- Fuzzy find all the symbols in your current document.
-	--  Symbols are things like variables, functions, types, etc.
-	map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-
-	-- Fuzzy find all the symbols in your current workspace.
-	--  Similar to document symbols, except searches over your entire project.
-	map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-
-	-- Rename the variable under your cursor.
-	--  Most Language Servers support renaming across files, etc.
-	map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-
-	-- Execute a code action, usually your cursor needs to be on top of an error
-	-- or a suggestion from your LSP for this to activate.
-	map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
-
-	-- WARN: This is not Goto Definition, this is Goto Declaration.
-	--  For example, in C this would take you to the header.
-	map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-
-	-- The following two autocommands are used to highlight references of the
-	-- word under your cursor when your cursor rests there for a little while.
-	--    See `:help CursorHold` for information about when this is executed
-	--
-	-- When you move your cursor, the highlights will be cleared (the second autocommand).
-	local client = vim.lsp.get_client_by_id(event.data.client_id)
-	if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-		local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
-		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-			buffer = event.buf,
-			group = highlight_augroup,
-			callback = vim.lsp.buf.document_highlight,
-		})
-
-		vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-			buffer = event.buf,
-			group = highlight_augroup,
-			callback = vim.lsp.buf.clear_references,
-		})
-
-		vim.api.nvim_create_autocmd("LspDetach", {
-			group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
-			callback = function(event2)
-				vim.lsp.buf.clear_references()
-				vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
-			end,
-		})
+	local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+	if not mason_lspconfig_ok then
+		vim.notify("mason-lspconfig not found.", vim.log.levels.WARN)
+		return false
 	end
 
-	-- The following code creates a keymap to toggle inlay hints in your
-	-- code, if the language server you are using supports them
-	--
-	-- This may be unwanted, since they displace some of your code
-	if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-		map("<leader>th", function()
-			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-		end, "[T]oggle Inlay [H]ints")
-	end
+	-- Mason is configured in the plugin spec, but we ensure it's set up
+	mason.setup()
 
-	-- Change diagnostic symbols in the sign column (gutter)
-	if vim.g.have_nerd_font then
-		local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+	-- Setup mason-lspconfig
+	mason_lspconfig.setup({
+		ensure_installed = servers,
+		automatic_installation = true,
+	})
+
+	-- Install additional tools (formatters, linters, DAP)
+	local mason_registry = require("mason-registry")
+	local tools = {
+		-- Formatters
+		"stylua",
+		"prettierd",
+		"prettier",
+		"black",
+		"isort",
+		"gofumpt",
+		"goimports",
+		"rubocop",
+		"rustfmt",
+		"shfmt",
+
+		-- Linters
+		"eslint_d",
+		"pylint",
+		"golangci-lint",
+		"markdownlint",
+		"yamllint",
+		"jsonlint",
+		"hadolint",
+		"shellcheck",
+
+		-- DAP
+		"delve", -- Go debugger
+		"debugpy", -- Python debugger
+	}
+
+	for _, tool in ipairs(tools) do
+		local package = mason_registry.get_package(tool)
+		if not package:is_installed() then
+			vim.notify("Installing " .. tool, vim.log.levels.INFO)
+			package:install()
 		end
+	end
+
+	return true
+end
+
+-- ============================================================================
+-- Setup Individual Servers
+-- ============================================================================
+function M.setup_servers()
+	local lspconfig = require("lspconfig")
+	local lsp = require("tecu.lsp")
+
+	-- Get common capabilities and on_attach
+	local capabilities = lsp.get_capabilities()
+	local on_attach = lsp.get_on_attach()
+
+	-- Setup each server
+	for _, server_name in ipairs(servers) do
+		-- Load server-specific configuration
+		local server_config = M.get_server_config(server_name)
+
+		-- Merge with default config
+		local config = vim.tbl_deep_extend("force", {
+			capabilities = capabilities,
+			on_attach = on_attach,
+		}, server_config or {})
+
+		-- Setup the server
+		if lspconfig[server_name] then
+			lspconfig[server_name].setup(config)
+		else
+			vim.notify("Server " .. server_name .. " not found in lspconfig", vim.log.levels.WARN)
+		end
+	end
+
+	-- Setup TypeScript tools (special case, not using lspconfig)
+	M.setup_typescript_tools()
+end
+
+-- ============================================================================
+-- Get Server Configuration
+-- ============================================================================
+function M.get_server_config(server_name)
+	-- Try to load server-specific configuration
+	local config_path = "tecu.lsp.servers." .. server_name
+	local ok, config = pcall(require, config_path)
+
+	if ok then
+		return config
+	end
+
+	-- Return default configurations for common servers
+	local default_configs = {
+		gopls = require("tecu.lsp.servers.gopls"),
+		solargraph = require("tecu.lsp.servers.solargraph"),
+		ruby_lsp = require("tecu.lsp.servers.ruby_lsp"),
+		lua_ls = require("tecu.lsp.servers.lua_ls"),
+		pyright = require("tecu.lsp.servers.pyright"),
+		rust_analyzer = require("tecu.lsp.servers.rust_analyzer"),
+		jsonls = require("tecu.lsp.servers.jsonls"),
+		yamlls = require("tecu.lsp.servers.yamlls"),
+		html = require("tecu.lsp.servers.html"),
+		cssls = require("tecu.lsp.servers.cssls"),
+		tailwindcss = require("tecu.lsp.servers.tailwindcss"),
+		eslint = require("tecu.lsp.servers.eslint"),
+	}
+
+	return default_configs[server_name] or {}
+end
+
+-- ============================================================================
+-- Setup TypeScript Tools
+-- ============================================================================
+function M.setup_typescript_tools()
+	local ok, typescript_tools = pcall(require, "typescript-tools")
+	if not ok then
+		vim.notify("typescript-tools.nvim not found", vim.log.levels.WARN)
+		return
+	end
+
+	-- TypeScript tools is configured in the plugin spec
+	-- but we can add additional setup here if needed
+	typescript_tools.setup({
+		on_attach = require("tecu.lsp").get_on_attach(),
+		capabilities = require("tecu.lsp").get_capabilities(),
+	})
+end
+
+-- ============================================================================
+-- Main Setup Function
+-- ============================================================================
+function M.setup()
+	-- Setup Mason for automatic installation
+	local mason_available = M.setup_mason()
+
+	if mason_available then
+		-- Wait a bit for Mason to initialize
+		vim.defer_fn(function()
+			M.setup_servers()
+		end, 100)
+	else
+		-- Setup servers directly without Mason
+		M.setup_servers()
 	end
 end
 

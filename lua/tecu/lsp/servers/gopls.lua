@@ -94,7 +94,7 @@ return {
 		-- Create autocmd for organizing imports on save
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			pattern = "*.go",
-			buffer = bufnr,
+			-- buffer = bufnr,
 			callback = function()
 				-- Organize imports
 				local params = vim.lsp.util.make_range_params()

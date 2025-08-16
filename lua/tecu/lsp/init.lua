@@ -7,17 +7,24 @@ local M = {}
 -- Setup Function
 -- ============================================================================
 function M.setup()
+	vim.notify("-1", vim.log.levels.WARN)
 	-- Load LSP modules
 	require("tecu.lsp.setup").setup()
+	vim.notify("0", vim.log.levels.WARN)
 
 	-- Setup diagnostic configuration
 	M.setup_diagnostics()
+	vim.notify("1", vim.log.levels.WARN)
 
 	-- Setup LSP handlers
 	M.setup_handlers()
 
+	vim.notify("2", vim.log.levels.WARN)
+
 	-- Setup autocommands
 	M.setup_autocmds()
+
+	vim.notify("3", vim.log.levels.WARN)
 
 	-- Setup user commands
 	M.setup_commands()
@@ -131,6 +138,7 @@ function M.setup_autocmds()
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = group,
 		callback = function(event)
+			vim.notify("CALLED LSP ATTACH", vim.log.levels.WARN)
 			M.on_attach(event)
 		end,
 	})
@@ -164,8 +172,12 @@ end
 -- On Attach Function
 -- ============================================================================
 function M.on_attach(event)
+	print(event)
 	local bufnr = event.buf
 	local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+	print(bufnr)
+	print(client)
 
 	if not client then
 		return
@@ -262,17 +274,6 @@ function M.setup_keymaps(bufnr)
 		map("n", "go", "<cmd>Lspsaga peek_type_definition<CR>", "Peek type definition (Saga)")
 		map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", "Toggle outline (Saga)")
 	end
-
-	-- Formatting
-	map({ "n", "v" }, "<leader>f", function()
-		-- Try conform first, fall back to LSP
-		local conform_ok, conform = pcall(require, "conform")
-		if conform_ok then
-			conform.format({ async = true, lsp_fallback = true, bufnr = bufnr })
-		else
-			vim.lsp.buf.format({ async = true, bufnr = bufnr })
-		end
-	end, "Format code")
 
 	-- Diagnostics
 	map("n", "<leader>e", vim.diagnostic.open_float, "Show line diagnostics")

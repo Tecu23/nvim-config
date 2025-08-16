@@ -303,12 +303,6 @@ keymap("n", "<leader>sgs", "<cmd>Telescope git_status<CR>", with_desc("[S]earch 
 keymap("n", "<leader>sgc", "<cmd>Telescope git_commits<CR>", with_desc("[S]earch [G]it [C]ommits"))
 keymap("n", "<leader>sgb", "<cmd>Telescope git_branches<CR>", with_desc("[S]earch [G]it [B]ranches"))
 
--- NvimTree (file explorer)
-keymap("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", with_desc("Toggle file explorer"))
-keymap("n", "<leader>ef", "<cmd>NvimTreeFindFile<CR>", with_desc("Find current file"))
-keymap("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", with_desc("Collapse file explorer"))
-keymap("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", with_desc("Refresh file explorer"))
-
 -- Gitsigns (inline git signs)
 keymap("n", "]g", "<cmd>Gitsigns next_hunk<CR>", with_desc("Next git hunk"))
 keymap("n", "[g", "<cmd>Gitsigns prev_hunk<CR>", with_desc("Previous git hunk"))

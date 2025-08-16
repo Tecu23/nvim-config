@@ -30,23 +30,17 @@ local servers = {
 	-- Lua
 	"lua_ls",
 
-	-- Python
-	"pyright",
-
-	-- Markdown
-	"marksman",
-
 	-- Bash
 	"bashls",
 
 	-- SQL
 	"sqls",
 
-	-- GraphQL
-	"graphql",
+	-- -- GraphQL
+	-- "graphql",
 
-	-- Prisma
-	"prismals",
+	-- -- Prisma
+	-- "prismals",
 }
 
 -- ============================================================================
@@ -157,6 +151,8 @@ function M.get_server_config(server_name)
 	local config_path = "tecu.lsp.servers." .. server_name
 	local ok, config = pcall(require, config_path)
 
+	print(config)
+
 	if ok then
 		return config
 	end
@@ -164,11 +160,9 @@ function M.get_server_config(server_name)
 	-- Return default configurations for common servers
 	local default_configs = {
 		gopls = require("tecu.lsp.servers.gopls"),
-		solargraph = require("tecu.lsp.servers.solargraph"),
 		ruby_lsp = require("tecu.lsp.servers.ruby_lsp"),
 		lua_ls = require("tecu.lsp.servers.lua_ls"),
 		pyright = require("tecu.lsp.servers.pyright"),
-		rust_analyzer = require("tecu.lsp.servers.rust_analyzer"),
 		jsonls = require("tecu.lsp.servers.jsonls"),
 		yamlls = require("tecu.lsp.servers.yamlls"),
 		html = require("tecu.lsp.servers.html"),

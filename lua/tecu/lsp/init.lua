@@ -7,29 +7,20 @@ local M = {}
 -- Setup Function
 -- ============================================================================
 function M.setup()
-	vim.notify("-1", vim.log.levels.WARN)
 	-- Load LSP modules
 	require("tecu.lsp.setup").setup()
-	vim.notify("0", vim.log.levels.WARN)
 
 	-- Setup diagnostic configuration
 	M.setup_diagnostics()
-	vim.notify("1", vim.log.levels.WARN)
 
 	-- Setup LSP handlers
 	M.setup_handlers()
 
-	vim.notify("2", vim.log.levels.WARN)
-
 	-- Setup autocommands
 	M.setup_autocmds()
 
-	vim.notify("3", vim.log.levels.WARN)
-
 	-- Setup user commands
 	M.setup_commands()
-
-	vim.notify("LSP configuration loaded", vim.log.levels.INFO)
 end
 
 -- ============================================================================

@@ -120,9 +120,6 @@ autocmd("FileType", {
 		vim.opt_local.shiftwidth = 4
 		vim.opt_local.softtabstop = 4
 
-		-- Set colorcolumn at 100 (common for Go projects)
-		vim.opt_local.colorcolumn = "100"
-
 		-- Enable format on save (requires LSP setup)
 		vim.opt_local.formatoptions:append("croq")
 	end,
@@ -287,7 +284,6 @@ autocmd("FileType", {
 		vim.opt_local.tabstop = 2
 		vim.opt_local.shiftwidth = 2
 		vim.opt_local.softtabstop = 2
-		vim.opt_local.colorcolumn = "80,100"
 
 		-- Common JS/TS conventions
 		vim.opt_local.formatoptions:remove("o")
@@ -363,7 +359,6 @@ autocmd("FileType", {
 		vim.opt_local.tabstop = 2
 		vim.opt_local.shiftwidth = 2
 		vim.opt_local.softtabstop = 2
-		vim.opt_local.colorcolumn = "80"
 	end,
 })
 
@@ -530,7 +525,6 @@ autocmd("FileType", {
 	desc = "Git commit settings",
 	callback = function()
 		vim.opt_local.spell = true
-		vim.opt_local.colorcolumn = "72"
 		vim.opt_local.textwidth = 72
 		vim.opt_local.wrap = true
 	end,

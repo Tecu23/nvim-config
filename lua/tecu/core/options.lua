@@ -45,7 +45,7 @@ opt.gdefault = true -- ?? Add g flag to search/replace by default
 -- UI & Visual Settings
 -- ============================================================================
 g.have_nerd_font = true -- Enable Nerd Font
-opt.termguicolors = false -- Enable 24-bit RGB colors
+opt.termguicolors = true -- Enable 24-bit RGB colors
 opt.showmode = false -- Don't show mode (shown in statusline)
 opt.showcmd = true -- Show partial commands in the last line
 opt.cmdheight = 1 -- ?? Command line height

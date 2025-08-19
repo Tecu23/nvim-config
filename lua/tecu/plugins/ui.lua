@@ -1,5 +1,5 @@
 -- ============================================================================
--- Neovim UI Plugins Configuration (lualine.nvim, indent-blankline.nvim, dropbar.nvim)
+-- Neovim UI Plugins Configuration (lualine.nvim, dropbar.nvim)
 -- ============================================================================
 
 return {
@@ -220,19 +220,6 @@ return {
 
 			-- Lualine Initialization with the new settings
 			lualine.setup(config)
-		end,
-	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		enabled = false,
-		event = "BufReadPost",
-		opts = {
-			scope = {
-				show_start = true,
-			},
-		},
-		config = function(_, opts)
-			require("ibl").setup(opts)
 		end,
 	},
 	{

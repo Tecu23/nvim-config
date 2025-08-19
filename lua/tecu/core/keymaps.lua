@@ -271,8 +271,8 @@ keymap("n", "<leader>zo", "zo", with_desc("Open fold"))
 keymap("n", "<leader>zM", "zM", with_desc("Close all folds"))
 keymap("n", "<leader>zR", "zR", with_desc("Open all folds"))
 
--- Jump to matching bracket
-keymap({ "n", "v" }, "<leader>m", "%", with_desc("Jump to matching bracket"))
+-- -- Jump to matching bracket
+-- keymap({ "n", "v" }, "<leader>m", "%", with_desc("Jump to matching bracket"))
 
 -- Add blank lines without entering insert mode
 keymap("n", "<leader>o", "o<Esc>", with_desc("Add line below"))

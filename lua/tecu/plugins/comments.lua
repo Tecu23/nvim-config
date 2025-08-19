@@ -1,6 +1,7 @@
 -- ============================================================================
 -- Comments Plugins Configuration for Lazy.nvim (TS-Comments, Todo-Comments)
 -- ============================================================================
+
 return {
 	{
 		"folke/todo-comments.nvim",

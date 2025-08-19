@@ -1,6 +1,7 @@
 -- ============================================================================
--- Theme Configuration
+-- Treesitter Configuration
 -- ============================================================================
+
 return {
 	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPost", "BufNewFile" },

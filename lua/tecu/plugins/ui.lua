@@ -1,3 +1,7 @@
+-- ============================================================================
+-- Neovim UI Plugins Configuration (lualine.nvim, indent-blankline.nvim, dropbar.nvim)
+-- ============================================================================
+
 return {
 	{
 		"nvim-lualine/lualine.nvim",

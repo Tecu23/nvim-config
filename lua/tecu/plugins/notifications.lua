@@ -1,3 +1,7 @@
+-- ============================================================================
+-- Neovim Notification Plugins Configuration (nvim-notify, noice.nvim)
+-- ============================================================================
+
 return {
 	{
 		"rcarriga/nvim-notify",

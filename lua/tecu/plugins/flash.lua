@@ -1,3 +1,7 @@
+-- ============================================================================
+-- Neovim Improved Search Configuration (flash.nvim)
+-- ============================================================================
+
 return {
 	"folke/flash.nvim",
 	event = "CmdlineEnter",
@@ -70,7 +74,7 @@ return {
 				enabled = true,
 				-- by default all keymaps are enabled, but you can disable some of them,
 				-- by removing them from the list.
-				keys = { ",", ";" },
+				keys = { ",", ";", "f", "F", "t", "T" },
 				search = { wrap = false },
 				highlight = { backdrop = true },
 				jump = { register = false },

@@ -1,6 +1,7 @@
 -- ============================================================================
 -- Navigation Plugins Configuration for Lazy.nvim (NeoTree, Dropbar)
 -- ============================================================================
+
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",

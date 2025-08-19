@@ -1,4 +1,7 @@
--- NOTE: Improve Folds
+-- ============================================================================
+-- Neovim Folds Plugin Configuration (nvim-ufo)
+-- ============================================================================
+
 return {
 	"kevinhwang91/nvim-ufo",
 	event = "BufReadPost",

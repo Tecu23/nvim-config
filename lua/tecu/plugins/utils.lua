@@ -1,3 +1,7 @@
+-- ============================================================================
+-- Neovim Utility Plugins Configuration (vim-visual-multi, mini.nvim, nvim-colorizer.lua, nvim-ts-autotag, nvim-autopairs)
+-- ============================================================================
+
 return {
 	{
 		"mg979/vim-visual-multi",
@@ -23,6 +27,7 @@ return {
 			require("mini.surround").setup()
 		end,
 	},
+
 	{
 		"NvChad/nvim-colorizer.lua",
 		enabled = true,

@@ -226,7 +226,7 @@ function M.setup_keymaps(bufnr)
 	local ok, telescope = pcall(require, "telescope.builtin")
 	if ok then
 		map("n", "gd", telescope.lsp_definitions, "[G]oto [D]efinition (Telescope)")
-		map("n", "gD", telescope.lsp_declaration, "[G]oto [D]efinition (Telescope)")
+		-- map("n", "gD", telescope.lsp_declaration, "[G]oto [D]efinition (Telescope)")
 		map("n", "gI", telescope.lsp_implementations, "[G]oto [I]mplementation (Telescope)")
 		map("n", "gr", telescope.lsp_references, "[G]oto [R]eferences (Telescope)")
 		map("n", "<leader>D", telescope.lsp_type_definitions, "Type [D]efinition (Telescope)")

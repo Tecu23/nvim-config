@@ -118,6 +118,8 @@ function M.setup()
 		end
 	end
 
+	M.setup_servers()
+
 	return true
 end
 

@@ -48,6 +48,18 @@ return {
 					enable = true,
 				},
 			},
+			-- This is the new part to add the rule configuration
+			rules = {
+				["no-unused-vars"] = "off",
+				["@typescript-eslint/no-unused-vars"] = {
+					"warn",
+					{
+						argsIgnorePattern = "^_",
+						varsIgnorePattern = "^_",
+						caughtErrorsIgnorePattern = "^_",
+					},
+				},
+			},
 		},
 	},
 	on_attach = function(client, bufnr)

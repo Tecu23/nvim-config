@@ -117,7 +117,23 @@ return {
 					filetypes = { "javascriptreact", "typescriptreact" },
 				},
 			},
-			handlers = {},
+			handlers = {
+				-- Custom handler to change severity of specific diagnostics
+				["textDocument/publishDiagnostics"] = function(err, params, ctx, config)
+					-- Modify diagnostics before they're processed
+					if params.diagnostics then
+						for _, diagnostic in ipairs(params.diagnostics) do
+							-- Change unused variable errors to warnings
+							if diagnostic.code == 6133 or diagnostic.code == 6196 then -- TS unused variable codes
+								diagnostic.severity = vim.diagnostic.severity.WARN
+							end
+							-- You can add more specific diagnostic code modifications here
+						end
+					end
+					-- Call the default handler
+					vim.lsp.diagnostic.on_publish_diagnostics(err, params, ctx, config)
+				end,
+			},
 		},
 	},
 
@@ -136,14 +152,8 @@ return {
 				dependencies = {
 					{
 						"rafamadriz/friendly-snippets",
-						config = function()
-							require("luasnip.loaders.from_vscode").lazy_load()
-						end,
 					},
 				},
-				config = function()
-					require("luasnip.loaders.from_vscode").lazy_load()
-				end,
 			},
 			"saadparwaiz1/cmp_luasnip",
 

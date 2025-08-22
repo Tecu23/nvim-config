@@ -57,11 +57,11 @@ function M.setup_diagnostics()
 				[vim.diagnostic.severity.HINT] = "⚑",
 				[vim.diagnostic.severity.INFO] = "»",
 			},
-			linehl = {
-				[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-			},
 			numhl = {
 				[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+				[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+				[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+				[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
 			},
 		},
 		update_in_insert = false,
@@ -74,6 +74,11 @@ function M.setup_diagnostics()
 			format = function(diagnostic)
 				return string.format("%s: %s", diagnostic.source or "LSP", diagnostic.message)
 			end,
+		},
+
+		-- Add underline for better visual indication without full line highlighting
+		underline = {
+			severity = { min = vim.diagnostic.severity.HINT },
 		},
 	})
 end

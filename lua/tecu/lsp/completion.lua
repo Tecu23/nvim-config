@@ -19,6 +19,27 @@ function M.setup()
 	end
 
 	-- ============================================================================
+	-- Snippet Configuration
+	-- ============================================================================
+
+	-- Configure LuaSnip
+	luasnip.config.setup({
+		history = true,
+		updateevents = "TextChanged,TextChangedI",
+		enable_autosnippets = true,
+		ext_opts = {
+			[require("luasnip.util.types").choiceNode] = {
+				active = {
+					virt_text = { { "←", "Error" } },
+				},
+			},
+		},
+	})
+
+	-- Load friendly-snippets
+	require("luasnip.loaders.from_vscode").lazy_load()
+
+	-- ============================================================================
 	-- Setup nvim-cmp
 	-- ============================================================================
 
@@ -245,32 +266,6 @@ function M.setup()
 
 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 	cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-	-- ============================================================================
-	-- Snippet Configuration
-	-- ============================================================================
-
-	-- Load friendly-snippets
-	require("luasnip.loaders.from_vscode").lazy_load()
-
-	-- Load custom snippets
-	require("luasnip.loaders.from_vscode").lazy_load({
-		paths = { vim.fn.stdpath("config") .. "/snippets" },
-	})
-
-	-- Configure LuaSnip
-	luasnip.config.setup({
-		history = true,
-		updateevents = "TextChanged,TextChangedI",
-		enable_autosnippets = true,
-		ext_opts = {
-			[require("luasnip.util.types").choiceNode] = {
-				active = {
-					virt_text = { { "←", "Error" } },
-				},
-			},
-		},
-	})
 
 	-- ============================================================================
 	-- Keymaps for snippets

@@ -40,6 +40,8 @@ function M.setup()
 			}),
 		},
 
+		completion = { completeopt = "menu,menuone,noselect" },
+
 		-- Experimental features
 		experimental = {
 			ghost_text = {
@@ -65,7 +67,6 @@ function M.setup()
 						buffer = "[Buffer]",
 						path = "[Path]",
 						emoji = "[Emoji]",
-						copilot = "[Copilot]",
 						crates = "[Crates]",
 						npm = "[NPM]",
 					})[entry.source.name]
@@ -127,50 +128,35 @@ function M.setup()
 
 		-- Sources priority and configuration
 		sources = cmp.config.sources({
-			-- Group 1: Primary sources (high priority)
+			{ name = "nvim_lsp", priority = 900 },
+			{ name = "nvim_lsp_signature_help", priority = 850 },
+			{ name = "luasnip", priority = 800 },
+			{ name = "nvim_lua", priority = 700 },
+			{ name = "path", priority = 600 },
 			{
-				{
-					name = "lazydev",
-					-- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
-					group_index = 0,
-				},
-				{ name = "nvim_lsp", priority = 900 },
-				{ name = "nvim_lsp_signature_help", priority = 850 },
-				{ name = "luasnip", priority = 800 },
-			},
-
-			-- Group 2: Secondary sources
-			{
-				{ name = "nvim_lua", priority = 700 },
-				{ name = "path", priority = 600 },
-				{ name = "emoji", priority = 300 },
-			},
-			-- Group 3: Fallback sources (low priority)
-			{
-				{
-					name = "buffer",
-					priority = 500,
-					option = {
-						get_bufnrs = function()
-							-- Use all visible buffers
-							local bufs = {}
-							for _, win in ipairs(vim.api.nvim_list_wins()) do
-								bufs[vim.api.nvim_win_get_buf(win)] = true
-							end
-							return vim.tbl_keys(bufs)
-						end,
-					},
-				},
-				{
-					name = "fuzzy_buffer",
-					priority = 400,
-					option = {
-						get_bufnrs = function()
-							return vim.api.nvim_list_bufs()
-						end,
-					},
+				name = "buffer",
+				priority = 500,
+				option = {
+					get_bufnrs = function()
+						-- Use all visible buffers
+						local bufs = {}
+						for _, win in ipairs(vim.api.nvim_list_wins()) do
+							bufs[vim.api.nvim_win_get_buf(win)] = true
+						end
+						return vim.tbl_keys(bufs)
+					end,
 				},
 			},
+			-- {
+			-- 	name = "fuzzy_buffer",
+			-- 	priority = 400,
+			-- 	option = {
+			-- 		get_bufnrs = function()
+			-- 			return vim.api.nvim_list_bufs()
+			-- 		end,
+			-- 	},
+			-- },
+			{ name = "emoji", priority = 300 },
 		}),
 
 		-- Sorting

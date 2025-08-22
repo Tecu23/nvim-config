@@ -4,8 +4,37 @@
 
 return {
 	"folke/flash.nvim",
-	event = "CmdlineEnter",
+	event = "VeryLazy",
 	opts = {
+		-- The `opts` table is where the magic happens. We'll add the
+		-- `mappings` table to ensure the keybindings are set.
+		-- This is in addition to the `modes` table which configures
+		-- the behavior *of* those keybindings.
+		mappings = {
+			-- Maps the 's' key to trigger flash in normal, visual, and operator-pending modes
+			s = {
+				mode = { "n", "x", "o" },
+				fn = function()
+					require("flash").jump()
+				end,
+				desc = "Flash Jump",
+			},
+			-- Explicitly map 'f' and 'F' to trigger character flash
+			f = {
+				mode = { "n", "o" },
+				fn = function()
+					require("flash").jump({ char_jump = true })
+				end,
+				desc = "Flash forward",
+			},
+			F = {
+				mode = { "n", "o" },
+				fn = function()
+					require("flash").jump({ char_jump = true, backwards = true })
+				end,
+				desc = "Flash backward",
+			},
+		},
 		labels = "asdfghjklqwertyuiopzxcvbnm",
 		search = {
 			-- search/jump in all windows
@@ -74,7 +103,7 @@ return {
 				enabled = true,
 				-- by default all keymaps are enabled, but you can disable some of them,
 				-- by removing them from the list.
-				keys = { ",", ";", "f", "F", "t", "T" },
+				keys = { ",", ";" },
 				search = { wrap = false },
 				highlight = { backdrop = true },
 				jump = { register = false },

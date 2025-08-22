@@ -249,7 +249,7 @@ function M.setup_keymaps(bufnr)
 	map("n", "<leader>rn", vim.lsp.buf.rename, "[R]ename [S]ymbol")
 
 	-- Diagnostics
-	map("n", "<leader>e", vim.diagnostic.open_float, "Show Line Diagnostics")
+	map("n", "<leader>do", vim.diagnostic.open_float, "Show Line Diagnostics")
 	map("n", "[d", vim.diagnostic.goto_prev, "Previous [D]iagnostic")
 	map("n", "]d", vim.diagnostic.goto_next, "Next [D]iagnostic")
 	map("n", "<leader>q", vim.diagnostic.setloclist, "Set Location List")

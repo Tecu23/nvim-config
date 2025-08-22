@@ -86,9 +86,13 @@ function M.setup()
 			-- Navigation
 			["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
 			["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+
 			["<C-u>"] = cmp.mapping.scroll_docs(-4),
 			["<C-d>"] = cmp.mapping.scroll_docs(4),
+
 			["<C-Space>"] = cmp.mapping.complete(),
+			["<C-y>"] = cmp.mapping.confirm({ select = true }),
+
 			["<C-e>"] = cmp.mapping.abort(),
 
 			-- Confirm selection
@@ -125,6 +129,11 @@ function M.setup()
 		sources = cmp.config.sources({
 			-- Group 1: Primary sources (high priority)
 			{
+				{
+					name = "lazydev",
+					-- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
+					group_index = 0,
+				},
 				{ name = "nvim_lsp", priority = 900 },
 				{ name = "nvim_lsp_signature_help", priority = 850 },
 				{ name = "luasnip", priority = 800 },

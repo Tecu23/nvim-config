@@ -14,7 +14,7 @@ return {
 		"iamcco/markdown-preview.nvim",
 		enabled = true,
 		init = function()
-			vim.keymap.set("n", "<leader>m", function()
+			vim.keymap.set("n", "<leader>mp", function()
 				if vim.bo.filetype == "markdown" then
 					vim.cmd("MarkdownPreviewToggle")
 				else

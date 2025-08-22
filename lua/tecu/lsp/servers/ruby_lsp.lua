@@ -43,9 +43,9 @@ return {
 		map("n", "<leader>rf", "<cmd>!bundle exec rspec --fail-fast<CR>", "Run specs (fail fast)")
 
 		-- Bundler commands
-		map("n", "<leader>bi", "<cmd>!bundle install<CR>", "Bundle install")
-		map("n", "<leader>bu", "<cmd>!bundle update<CR>", "Bundle update")
-		map("n", "<leader>be", "<cmd>!bundle exec ", "Bundle exec")
+		map("n", "<leader>rbi", "<cmd>!bundle install<CR>", "Bundle install")
+		map("n", "<leader>rbu", "<cmd>!bundle update<CR>", "Bundle update")
+		map("n", "<leader>rbe", "<cmd>!bundle exec ", "Bundle exec")
 
 		-- RuboCop
 		map("n", "<leader>rC", "<cmd>!bundle exec rubocop %<CR>", "RuboCop current file")

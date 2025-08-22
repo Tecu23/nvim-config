@@ -62,15 +62,6 @@ keymap(
 	with_desc("Replace word under cursor")
 )
 
--- Toggle wrap
-keymap("n", "<leader>uw", "<cmd>set wrap!<CR>", with_desc("Toggle word wrap"))
-
--- Toggle spell check
-keymap("n", "<leader>us", "<cmd>set spell!<CR>", with_desc("Toggle spell check"))
-
--- Toggle relative numbers
-keymap("n", "<leader>un", "<cmd>set relativenumber!<CR>", with_desc("Toggle relative numbers"))
-
 -- Inspect
 keymap("n", "<leader>ni", function()
 	if vim.version().minor >= 9 then
@@ -121,7 +112,6 @@ keymap("n", "{", "{zz", with_desc("Previous paragraph"))
 -- tailwind bearable to work with
 keymap({ "n", "x" }, "j", "gj", {})
 keymap({ "n", "x" }, "k", "gk", {})
-keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", {})
 
 -- ============================================================================
 -- Window Management
@@ -249,10 +239,10 @@ keymap("n", "<leader>tn", "<cmd>tabnew | terminal<CR>", with_desc("Open terminal
 -- Quickfix and Location List
 -- ============================================================================
 
-keymap("n", "<leader>co", "<cmd>copen<CR>", with_desc("Open quickfix"))
-keymap("n", "<leader>cc", "<cmd>cclose<CR>", with_desc("Close quickfix"))
-keymap("n", "<leader>cn", "<cmd>cnext<CR>zz", with_desc("Next quickfix item"))
-keymap("n", "<leader>cp", "<cmd>cprev<CR>zz", with_desc("Previous quickfix item"))
+keymap("n", "<leader>qo", "<cmd>copen<CR>", with_desc("Open quickfix"))
+keymap("n", "<leader>qc", "<cmd>cclose<CR>", with_desc("Close quickfix"))
+keymap("n", "<leader>qn", "<cmd>cnext<CR>zz", with_desc("Next quickfix item"))
+keymap("n", "<leader>qp", "<cmd>cprev<CR>zz", with_desc("Previous quickfix item"))
 
 keymap("n", "<leader>lo", "<cmd>lopen<CR>", with_desc("Open location list"))
 keymap("n", "<leader>lc", "<cmd>lclose<CR>", with_desc("Close location list"))

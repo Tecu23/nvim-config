@@ -12,6 +12,7 @@ return {
 			-- LSP Management
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
+			{ "saghen/blink.cmp" },
 
 			-- Useful status updates for LSP
 			{
@@ -119,7 +120,7 @@ return {
 			},
 			handlers = {
 				-- Custom handler to change severity of specific diagnostics
-				["textDocument/publishDiagnostics"] = function(err, params, ctx, config)
+				["textDocument/publishDiagnostics"] = function(err, params, ctx)
 					-- Modify diagnostics before they're processed
 					if params.diagnostics then
 						for _, diagnostic in ipairs(params.diagnostics) do
@@ -131,7 +132,7 @@ return {
 						end
 					end
 					-- Call the default handler
-					vim.lsp.diagnostic.on_publish_diagnostics(err, params, ctx, config)
+					vim.lsp.diagnostic.on_publish_diagnostics(err, params, ctx)
 				end,
 			},
 		},
@@ -141,46 +142,195 @@ return {
 	-- Autocompletion
 	-- ============================================================================
 	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
+		"saghen/blink.cmp",
+		--  provides snippets for the snippet source
 		dependencies = {
-			-- Snippet Engine & its associated nvim-cmp source
 			{
 				"L3MON4D3/LuaSnip",
 				version = "v2.*",
 				build = "make install_jsregexp",
 				dependencies = {
-					{
-						"rafamadriz/friendly-snippets",
+					"rafamadriz/friendly-snippets",
+				},
+			},
+			"folke/lazydev.nvim",
+			"onsails/lspkind.nvim",
+		},
+
+		-- use a release tag to download pre-built binaries
+		version = "1.*",
+
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
+		opts = {
+			keymap = {
+				preset = "default",
+
+				-- Show/Hide
+				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+				["<C-e>"] = { "hide" },
+				["<C-y>"] = { "select_and_accept" },
+				--
+				-- Select prev/next
+				["<Up>"] = { "select_prev", "fallback" },
+				["<Down>"] = { "select_next", "fallback" },
+				["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+				["<C-n>"] = { "select_next", "fallback_to_mappings" },
+
+				-- Scroll
+				["<C-b>"] = { "scroll_documentation_up", "fallback" },
+				["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+				-- Tab management
+				["<Tab>"] = { "snippet_forward", "fallback" },
+				["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+			},
+
+			appearance = {
+				-- Sets the fallback highlight groups to nvim-cmp's highlight groups
+				-- Useful for when your theme doesn't support blink.cmp
+				-- will be removed in a future release
+				use_nvim_cmp_as_default = true,
+				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+				-- Adjusts spacing to ensure icons are aligned
+				nerd_font_variant = "mono",
+				kind_icons = {
+					Text = "󰉿",
+					Method = "󰊕",
+					Function = "󰊕",
+					Constructor = "",
+					Field = "󰇽",
+					Variable = "󰂡",
+					Class = "󰠱",
+					Interface = "",
+					Module = "",
+					Property = "󰜢",
+					Unit = "",
+					Value = "󰎠",
+					Enum = "",
+					Keyword = "󰌋",
+					Snippet = "",
+					Color = "󰏘",
+					File = "󰈙",
+					Reference = "",
+					Folder = "󰉋",
+					EnumMember = "",
+					Constant = "󰏿",
+					Struct = "",
+					Event = "",
+					Operator = "󰆕",
+					TypeParameter = "󰅲",
+				},
+			},
+
+			-- Default list of enabled providers defined so that you can extend it
+			-- elsewhere in your config, without redefining it, due to `opts_extend`
+			sources = {
+				default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+				providers = {
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						-- make lazydev completions top priority (see `:h blink.cmp`)
+						score_offset = 100,
 					},
 				},
 			},
-			"saadparwaiz1/cmp_luasnip",
 
-			-- LSP completion capabilities
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
+			completion = {
+				list = {
+					max_items = 200,
+					selection = { preselect = true, auto_insert = true },
+				},
+				documentation = {
+					auto_show = true,
+					auto_show_delay_ms = 200,
+					window = {
+						border = "rounded",
+						winblend = 0,
+						winhighlight = "Normal:Normal,FloatBorder:BorderBG,Search:None",
+					},
+				},
 
-			-- Additional completion sources
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-nvim-lua",
+				menu = {
+					enabled = true,
+					border = "rounded",
+					winblend = 0,
+					winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
+					draw = {
+						treesitter = { "lsp" },
+						columns = {
+							{ "kind_icon" },
+							{ "label", "label_description", gap = 1 },
+							{ "kind", "source_name", gap = 1 },
+						},
+					},
+				},
 
-			-- Better sorting and filtering
-			{
-				"tzachar/cmp-fuzzy-buffer",
-				dependencies = { "tzachar/fuzzy.nvim" },
+				-- Ghost text (v1.x experimental feature)
+				ghost_text = {
+					enabled = true,
+				},
+
+				-- Accept configuration
+				accept = {
+					auto_brackets = {
+						enabled = false,
+					},
+				},
 			},
 
-			-- Icons for completion items
-			"onsails/lspkind.nvim",
+			cmdline = {
+				sources = {
+					-- For search
+					["/"] = { "buffer" },
+					["?"] = { "buffer" },
+					-- For command mode
+					[":"] = { "path", "cmdline" },
+				},
+			},
+
+			-- Signature help configuration
+			signature = {
+				enabled = true,
+				window = {
+					border = "rounded",
+					winblend = 0,
+				},
+			},
+
+			snippets = {
+				expand = function(snippet)
+					require("luasnip").lsp_expand(snippet)
+				end,
+				active = function(filter)
+					if filter and filter.direction then
+						return require("luasnip").jumpable(filter.direction)
+					end
+					return require("luasnip").in_snippet()
+				end,
+				jump = function(direction)
+					require("luasnip").jump(direction)
+				end,
+			},
+
+			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+			-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+			--
+			-- See the fuzzy documentation for more information
+			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
-		config = function()
-			require("tecu.lsp.completion").setup()
+		opts_extend = { "sources.default" },
+		config = function(_, opts)
+			require("blink-cmp").setup(opts)
+
+			-- Load friendly-snippets
+			require("luasnip.loaders.from_vscode").lazy_load()
 		end,
 	},
-
 	-- ============================================================================
 	-- Formatting
 	-- ============================================================================

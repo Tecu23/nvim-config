@@ -423,9 +423,9 @@ function M.get_capabilities()
 	capabilities.workspace.workspaceFolders = true
 
 	-- If nvim-cmp is installed, enhance capabiliries
-	local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-	if has_cmp then
-		capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
+	local ok, blink_cmp = pcall(require, "blink.cmp")
+	if ok then
+		capabilities = vim.tbl_deep_extend("force", capabilities, blink_cmp.get_lsp_capabilities())
 	end
 
 	return capabilities

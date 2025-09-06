@@ -1,46 +1,12 @@
--- Launch
-require("tecu.launch")
+-- ============================================================================
+-- Neovim Main Entry File
+-- ============================================================================
 
--- Core functionality
-require("tecu.core.opts")
-require("tecu.core.kmaps")
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
--- Autocommands
-require("tecu.core.autocmds")
+require("tecu.core.options") -- Basic Options
+require("tecu.core.keymaps") -- Key Mappings
+require("tecu.core.autocommands") -- Autocommands
 
--- Core Plugins
-spec("tecu.plugins.core.colorscheme")
-spec("tecu.plugins.core.cmp")
-spec("tecu.plugins.core.gitsigns")
-spec("tecu.plugins.core.which-key")
-spec("tecu.plugins.core.neo-tree")
-spec("tecu.plugins.core.treesitter")
-spec("tecu.plugins.core.telescope")
-spec("tecu.plugins.core.indent_line")
-spec("tecu.plugins.core.harpoon")
-spec("tecu.plugins.core.transparent")
-spec("tecu.plugins.core.colorizer")
-spec("tecu.plugins.core.terminal")
-
--- Custom Plugins
-spec("tecu.plugins.custom.noice")
-spec("tecu.plugins.custom.todo-comments")
-spec("tecu.plugins.custom.comment")
-spec("tecu.plugins.custom.mini")
-spec("tecu.plugins.custom.debug")
-spec("tecu.plugins.custom.autopairs")
-spec("tecu.plugins.custom.autotag")
-spec("tecu.plugins.custom.gopher")
-spec("tecu.plugins.custom.lazygit")
-spec("tecu.plugins.custom.neotest")
-spec("tecu.plugins.custom.ufo")
-spec("tecu.plugins.custom.dressing")
-spec("tecu.plugins.custom.markdown-preview")
-
--- LSP
-spec("tecu.lsp.lspconfig")
-spec("tecu.lsp.conform")
-spec("tecu.lsp.lint")
-
--- Lazy Nvim
-require("tecu.lazy")
+require("tecu.config.lazy") -- Plugin Manager

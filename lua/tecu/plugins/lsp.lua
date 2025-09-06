@@ -283,12 +283,25 @@ return {
 			},
 
 			cmdline = {
+				keymap = { preset = "inherit" },
+				list = {
+					selection = {
+						preselect = true,
+						auto_insert = true,
+					},
+				},
+				completion = {
+					menu = { auto_show = true },
+					ghost_text = { enabled = true },
+				},
 				sources = {
-					-- For search
-					["/"] = { "buffer" },
-					["?"] = { "buffer" },
-					-- For command mode
-					[":"] = { "path", "cmdline" },
+					"buffer",
+					"cmdline",
+					-- -- For search
+					-- ["/"] = { "buffer" },
+					-- ["?"] = { "buffer" },
+					-- -- For command mode
+					-- [":"] = { "path", "cmdline" },
 				},
 			},
 

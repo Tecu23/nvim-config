@@ -19,6 +19,9 @@ local servers = {
 	"tailwindcss",
 	"eslint",
 
+	-- Python
+	"pylsp",
+
 	-- JSON/YAML
 	"jsonls",
 	"yamlls",
@@ -93,6 +96,9 @@ function M.setup()
 
 		"sqlfmt",
 
+		"black",
+		"isort",
+
 		-- Linters
 		"eslint_d",
 
@@ -106,6 +112,9 @@ function M.setup()
 
 		"revive",
 		"golangci-lint",
+
+		"pylint",
+		"flake8",
 
 		-- DAP
 	}

@@ -109,24 +109,6 @@ autocmd("FileType", {
 -- ============================================================================
 -- Go (Golang) Specific
 -- ============================================================================
--- Set Go specific settings
-autocmd("FileType", {
-	group = golang,
-	pattern = "go",
-	desc = "Go specific settings",
-	callback = function()
-		-- Go uses tabs, not spaces
-		vim.opt_local.expandtab = false
-		vim.opt_local.tabstop = 4
-		vim.opt_local.shiftwidth = 4
-		vim.opt_local.softtabstop = 4
-
-		-- Enable format on save (requires LSP setup)
-		vim.opt_local.formatoptions:append("croq")
-	end,
-})
-
--- Auto import packages on save (requires gopls LSP)
 autocmd("BufWritePre", {
 	group = golang,
 	pattern = "*.go",
@@ -178,19 +160,6 @@ autocmd("FileType", {
 -- ============================================================================
 -- Ruby Specific
 -- ============================================================================
-
--- Set Ruby specific settings
-autocmd("FileType", {
-	group = ruby,
-	pattern = { "ruby", "eruby" },
-	desc = "Ruby specific settings",
-	callback = function()
-		vim.opt_local.expandtab = true
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.softtabstop = 2
-	end,
-})
 
 -- Set file type for Ruby files
 autocmd({ "BufNewFile", "BufRead" }, {
@@ -274,24 +243,6 @@ autocmd("FileType", {
 -- ============================================================================
 -- Frontend (React, TypeScript, JavaScript)
 -- ============================================================================
-
--- TypeScript/JavaScript settings
-autocmd("FileType", {
-	group = frontend,
-	pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-	desc = "JS/TS specific settings",
-	callback = function()
-		vim.opt_local.expandtab = true
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.softtabstop = 2
-
-		-- Common JS/TS conventions
-		vim.opt_local.formatoptions:remove("o")
-	end,
-})
-
--- Recognize React files
 autocmd({ "BufNewFile", "BufRead" }, {
 	group = frontend,
 	pattern = { "*.jsx", "*.tsx" },
@@ -303,20 +254,6 @@ autocmd({ "BufNewFile", "BufRead" }, {
 		elseif ext == "tsx" then
 			vim.bo.filetype = "typescriptreact"
 		end
-	end,
-})
-
--- JSON specific settings
-autocmd("FileType", {
-	group = frontend,
-	pattern = { "json", "jsonc" },
-	desc = "JSON specific settings",
-	callback = function()
-		vim.opt_local.expandtab = true
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.softtabstop = 2
-		vim.opt_local.conceallevel = 0 -- Show quotes in JSON
 	end,
 })
 
@@ -333,49 +270,6 @@ autocmd("BufEnter", {
 	end,
 })
 
--- Auto-format with Prettier on save (requires prettier to be installed)
-autocmd("BufWritePre", {
-	group = frontend,
-	pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.json", "*.css", "*.scss", "*.md" },
-	desc = "Format with Prettier on save",
-	callback = function()
-		-- Only run if prettier config exists
-		if
-			vim.fn.filereadable(".prettierrc") == 1
-			or vim.fn.filereadable(".prettierrc.json") == 1
-			or vim.fn.filereadable("prettier.config.js") == 1
-		then
-			vim.lsp.buf.format({ async = false })
-		end
-	end,
-})
-
--- CSS/SCSS settings
-autocmd("FileType", {
-	group = frontend,
-	pattern = { "css", "scss", "sass", "less" },
-	desc = "CSS specific settings",
-	callback = function()
-		vim.opt_local.expandtab = true
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.softtabstop = 2
-	end,
-})
-
--- HTML/Template settings
-autocmd("FileType", {
-	group = frontend,
-	pattern = { "html", "xml", "erb", "ejs", "vue" },
-	desc = "HTML/Template specific settings",
-	callback = function()
-		vim.opt_local.expandtab = true
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.softtabstop = 2
-	end,
-})
-
 -- ============================================================================
 -- YAML/Docker/Config Files
 -- ============================================================================
@@ -386,9 +280,6 @@ autocmd("FileType", {
 	desc = "YAML specific settings",
 	callback = function()
 		vim.opt_local.expandtab = true
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.softtabstop = 2
 		vim.opt_local.indentkeys:remove("<:>")
 	end,
 })
@@ -528,21 +419,6 @@ autocmd("FileType", {
 		vim.opt_local.spell = true
 		vim.opt_local.textwidth = 72
 		vim.opt_local.wrap = true
-	end,
-})
-
--- SQL files
-autocmd("FileType", {
-	group = general,
-	pattern = "sql",
-	desc = "SQL specific settings",
-	callback = function()
-		vim.opt_local.expandtab = true
-		vim.opt_local.tabstop = 4
-		vim.opt_local.shiftwidth = 4
-		vim.opt_local.softtabstop = 4
-		-- SQL keywords uppercase
-		vim.opt_local.formatoptions:append("croq")
 	end,
 })
 

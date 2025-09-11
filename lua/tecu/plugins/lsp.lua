@@ -284,15 +284,15 @@ return {
 
 			cmdline = {
 				keymap = { preset = "inherit" },
-				list = {
-					selection = {
-						preselect = true,
-						auto_insert = true,
-					},
-				},
 				completion = {
 					menu = { auto_show = true },
 					ghost_text = { enabled = true },
+					list = {
+						selection = {
+							preselect = true,
+							auto_insert = true,
+						},
+					},
 				},
 				sources = {
 					"buffer",
@@ -371,16 +371,16 @@ return {
 
 				python = { "isort", "black" },
 
-				css = { "prettierd", "prettier" },
-				scss = { "prettierd", "prettier" },
-				html = { "prettierd", "prettier" },
-				yaml = { "prettierd", "prettier" },
-				json = { "prettierd", "prettier" },
-				markdown = { "prettierd", "prettier" },
-				javascript = { "prettierd", "prettier" },
-				typescript = { "prettierd", "prettier" },
-				javascriptreact = { "prettierd", "prettier" },
-				typescriptreact = { "prettierd", "prettier" },
+				css = { "prettierd" },
+				scss = { "prettierd" },
+				html = { "prettierd" },
+				yaml = { "prettierd" },
+				json = { "prettierd" },
+				markdown = { "prettierd" },
+				javascript = { "prettierd" },
+				typescript = { "prettierd" },
+				javascriptreact = { "prettierd" },
+				typescriptreact = { "prettierd" },
 
 				go = { "gofumpt", "goimports-reviser", "goimports", "gofmt", "golines" },
 
@@ -398,7 +398,7 @@ return {
 				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 					return
 				end
-				return { timeout_ms = 500, lsp_fallback = true }
+				return { timeout_ms = 10000, lsp_fallback = true }
 			end,
 		},
 	},
@@ -418,7 +418,7 @@ return {
 				javascriptreact = { "eslint" },
 				typescriptreact = { "eslint" },
 
-				python = { "pylint" },
+				python = { "flake8" }, -- Only use flake8 until I make pylint work with conda envs
 
 				ruby = { "rubocop" },
 
